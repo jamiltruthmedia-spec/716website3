@@ -7,14 +7,139 @@
     <meta name="description" content="Mobile fleet detailing Lewiston NY. Same day service for trucks, vans, box trucks. Emergency cleaning available. Call (716) 405-0316"> 
     <link rel="canonical" href="https://www.716details.net/fleet-detailing.html">
     <link rel="stylesheet" href="styles.css">
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "716 Details - Fleet Detailing Services",
+    "description": "Professional fleet detailing services in Lewiston, NY",
+    "url": "https://www.716details.net/fleet-detailing.html",
+    "telephone": "(716) 405-0316",
+    "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "4689 Model City Rd",
+    "addressLocality": "Lewiston",
+    "addressRegion": "NY",
+    "postalCode": "14092",
+    "addressCountry": "US"
+    },
+    "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 43.1739,
+    "longitude": -79.0358
+    },
+    "areaServed": [
+    "Lewiston, NY",
+    "Niagara County, NY",
+    "Clarence, NY",
+    "East Amherst, NY",
+    "Williamsville, NY",
+    "Youngstown, NY"
+    ],
+    "serviceType": "Fleet Detailing Services",
+    "priceRange": "$$-$$$"
+    }
+    </script>
+    
+    <!-- Service Schema -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": "Fleet Detailing",
+        "name": "Fleet Detailing Services",
         "description": "Professional fleet detailing for business fleets, contractors, delivery vehicles. Mobile or shop service in Niagara County.",
-        "areaServed": ["Lewiston NY","Clarence NY","Williamsville NY","East Amherst NY"],
-        "provider": {"@type": "LocalBusiness","name": "716 Details","telephone": "(716) 405-0316"}
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "716 Details",
+            "telephone": "(716) 405-0316",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "4689 Model City Rd",
+                "addressLocality": "Lewiston",
+                "addressRegion": "NY",
+                "postalCode": "14092"
+            }
+        },
+        "areaServed": [
+            "Lewiston, NY",
+            "Clarence, NY",
+            "Williamsville, NY",
+            "East Amherst, NY",
+            "Niagara County, NY"
+        ],
+        "serviceType": "Fleet Detailing",
+        "url": "https://www.716details.net/fleet-detailing.html"
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Do you come to our lot or shop?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. We can detail at your lot, on routes, or at our Lewiston shop. We bring power, water, and pro equipment."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you work after hours or weekends?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We offer evening and weekend appointments so your fleet stays working during the day."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can we set a monthly plan?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Weekly, bi-weekly, or monthly plans available. Simple invoices, Net-30 for approved accounts."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What vehicles do you service?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Service vans, pickups, box trucks, cars, SUVs—plus specialty vehicles. Ask for a custom quote."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.716details.net/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Services",
+                "item": "https://www.716details.net/#services"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Fleet Detailing",
+                "item": "https://www.716details.net/fleet-detailing.html"
+            }
+        ]
     }
     </script>
 </head>

@@ -7,14 +7,139 @@
     <meta name="description" content="Dealership detailing Lewiston NY. Pre-delivery inspection, lot car cleaning, same day service. Call (716) 405-0316">
     <link rel="canonical" href="https://www.716details.net/dealership-detailing.html">
     <link rel="stylesheet" href="styles.css">
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "716 Details - Dealership Detailing Services",
+    "description": "Professional dealership detailing services in Lewiston, NY",
+    "url": "https://www.716details.net/dealership-detailing.html",
+    "telephone": "(716) 405-0316",
+    "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "4689 Model City Rd",
+    "addressLocality": "Lewiston",
+    "addressRegion": "NY",
+    "postalCode": "14092",
+    "addressCountry": "US"
+    },
+    "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 43.1739,
+    "longitude": -79.0358
+    },
+    "areaServed": [
+    "Lewiston, NY",
+    "Niagara County, NY",
+    "Clarence, NY",
+    "East Amherst, NY",
+    "Williamsville, NY",
+    "Youngstown, NY"
+    ],
+    "serviceType": "Dealership Detailing Services",
+    "priceRange": "$$-$$$"
+    }
+    </script>
+    
+    <!-- Service Schema -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": "Dealership Detailing",
+        "name": "Dealership Detailing Services",
         "description": "Professional dealership detailing for pre-delivery inspection, lot car cleaning, and inventory maintenance in Niagara County.",
-        "areaServed": ["Lewiston NY","Clarence NY","Williamsville NY","East Amherst NY","Niagara Falls NY"],
-        "provider": {"@type": "LocalBusiness","name": "716 Details","telephone": "(716) 405-0316"}
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "716 Details",
+            "telephone": "(716) 405-0316",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "4689 Model City Rd",
+                "addressLocality": "Lewiston",
+                "addressRegion": "NY",
+                "postalCode": "14092"
+            }
+        },
+        "areaServed": [
+            "Lewiston, NY",
+            "Clarence, NY",
+            "Williamsville, NY",
+            "East Amherst, NY",
+            "Niagara County, NY"
+        ],
+        "serviceType": "Dealership Detailing",
+        "url": "https://www.716details.net/dealership-detailing.html"
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Do you come to our dealership lot?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. We bring everything to your lot - no need to transport cars. We work around your sales schedule and clean cars where customers see them."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How fast can you prep a car for delivery?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We offer same-day service for urgent deliveries. Most PDI work can be completed within 2-4 hours depending on the car's condition."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you work with high-volume dealers?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. We provide monthly contracts, bulk rates, priority scheduling, and dedicated service teams for dealers with large inventories."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can you handle shipping film removal?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely. We specialize in shipping film removal, rail dust removal, and transport residue cleaning without damaging the car's finish."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.716details.net/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Services",
+                "item": "https://www.716details.net/#services"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Dealership Detailing",
+                "item": "https://www.716details.net/dealership-detailing.html"
+            }
+        ]
     }
     </script>
 </head>
