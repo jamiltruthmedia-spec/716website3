@@ -478,6 +478,17 @@ a {
 .service-pillars {
     padding: 80px 0;
     background: #000000;
+    text-align: center;
+}
+
+.service-pillars h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.service-pillars .section-subtitle {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 .pillars-grid {
