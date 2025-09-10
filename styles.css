@@ -683,7 +683,7 @@ a {
 }
 
 .service-icon img {
-    width: 460px;
+    width: 480px;
     height: 300px;
     object-fit: cover;
     border-radius: 22px;
@@ -1750,6 +1750,8 @@ input:focus, select:focus, textarea:focus {
 
     .services-grid {
         grid-template-columns: 1fr;
+        justify-items: center;
+        place-items: center;
     }
 
     .packages-grid {
@@ -1822,7 +1824,7 @@ input:focus, select:focus, textarea:focus {
     }
 
     .service-icon img {
-        width: 360px;
+        width: 380px;
         height: 280px;
         object-fit: cover;
         border-radius: 20px;
