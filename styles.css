@@ -743,6 +743,26 @@ a {
     transform: translateY(-2px);
 }
 
+.service-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.service-buttons .service-btn {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+}
+
+.service-btn.book-now {
+    background: #28a745;
+}
+
+.service-btn.book-now:hover {
+    background: #218838;
+}
+
 /* Service Benefits (for service pages) */
 .service-benefits {
     padding: 100px 0;
@@ -969,7 +989,14 @@ a {
     color: #ffffff;
 }
 
-.related-services > p {
+.related-services p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #cccccc;
+    margin-bottom: 4rem;
+}
+
+.related-services .container > p {
     text-align: center;
     font-size: 1.2rem;
     color: #cccccc;
