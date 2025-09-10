@@ -679,12 +679,12 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 240px;
+    height: 260px;
 }
 
 .service-icon img {
     width: 360px;
-    height: 220px;
+    height: 240px;
     object-fit: cover;
     border-radius: 22px;
     box-shadow: 0 10px 30px rgba(79,124,255,0.45);
@@ -1818,12 +1818,12 @@ input:focus, select:focus, textarea:focus {
     }
 
     .service-icon {
-        height: 180px;
+        height: 240px;
     }
 
     .service-icon img {
         width: 300px;
-        height: 160px;
+        height: 220px;
         border-radius: 20px;
         box-shadow: 0 8px 25px rgba(79,124,255,0.4);
     }
