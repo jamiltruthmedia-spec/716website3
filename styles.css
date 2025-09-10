@@ -679,15 +679,15 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80px;
+    height: 150px;
 }
 
 .service-icon img {
-    width: 80px;
-    height: 80px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(79,124,255,0.2);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(79,124,255,0.3);
 }
 
 .service-card h3 {
