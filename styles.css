@@ -1142,7 +1142,10 @@ a {
     border-radius: 8px;
     font-weight: 600;
     transition: all 0.3s ease;
-    display: inline-block;
+    display: block;
+    text-align: center;
+    margin: 1.5rem auto 0;
+    width: fit-content;
 }
 
 .area-btn:hover {
@@ -1531,6 +1534,11 @@ input:focus, select:focus, textarea:focus {
 .issue-card p {
     color: #cccccc;
     line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.issue-card .area-btn {
+    margin-top: auto;
 }
 
 .why-choose-us {
