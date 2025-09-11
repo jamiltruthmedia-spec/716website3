@@ -566,26 +566,38 @@
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
         const body = document.body;
+        const html = document.documentElement;
         let isMenuOpen = false;
         let scrollPosition = 0;
 
-        // Mobile menu toggle with enhanced functionality
+        // Mobile Navigation Script - ULTIMATE VERSION
         hamburger.addEventListener('click', () => {
             isMenuOpen = !isMenuOpen;
             
             if (isMenuOpen) {
                 scrollPosition = window.pageYOffset;
+                // Enhanced body lock - prevents all scrolling and jumping
                 body.style.overflow = 'hidden';
                 body.style.position = 'fixed';
                 body.style.top = `-${scrollPosition}px`;
                 body.style.width = '100%';
+                body.style.height = '100%';
+                
+                // Also lock html element for extra security
+                html.style.overflow = 'hidden';
+                
                 hamburger.classList.add('active');
                 navMenu.classList.add('active');
             } else {
+                // Restore body styles
                 body.style.overflow = '';
                 body.style.position = '';
                 body.style.top = '';
                 body.style.width = '';
+                body.style.height = '';
+                html.style.overflow = '';
+                
+                // Restore scroll position smoothly
                 window.scrollTo(0, scrollPosition);
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');

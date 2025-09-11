@@ -605,15 +605,17 @@
     </footer>
 
     <script>
-    // Mobile Navigation Script - FIXED VERSION
+    // Mobile Navigation Script - ULTIMATE VERSION
     document.addEventListener('DOMContentLoaded', function() {
         // Get elements
         const hamburger = document.querySelector('#hamburger');
         const navMenu = document.querySelector('#nav-menu');
         const body = document.body;
+        const html = document.documentElement;
         
-        // Track menu state
+        // Track menu state and scroll position
         let isMenuOpen = false;
+        let scrollPosition = 0;
         
         // Hamburger click handler
         if (hamburger) {
@@ -624,18 +626,39 @@
                 isMenuOpen = !isMenuOpen;
                 
                 if (isMenuOpen) {
+                    // Store current scroll position
+                    scrollPosition = window.pageYOffset;
+                    
+                    // Open menu with enhanced body lock
                     hamburger.classList.add('active');
                     navMenu.classList.add('active');
-                    // Allow scrolling within the nav menu but prevent body scroll
+                    
+                    // Enhanced body lock - prevents all scrolling and jumping
                     body.style.overflow = 'hidden';
                     body.style.position = 'fixed';
+                    body.style.top = `-${scrollPosition}px`;
                     body.style.width = '100%';
+                    body.style.height = '100%';
+                    
+                    // Also lock html element for extra security
+                    html.style.overflow = 'hidden';
+                    
                 } else {
+                    // Close menu and restore scroll position
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
+                    
+                    // Restore body styles
                     body.style.overflow = '';
                     body.style.position = '';
+                    body.style.top = '';
                     body.style.width = '';
+                    body.style.height = '';
+                    html.style.overflow = '';
+                    
+                    // Restore scroll position smoothly
+                    window.scrollTo(0, scrollPosition);
+                    
                     closeAllDropdowns();
                 }
             });
