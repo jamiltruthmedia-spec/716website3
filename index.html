@@ -1065,24 +1065,26 @@
                         console.log('Services currently active:', isActive);
                         console.log('Arrow found:', !!arrow);
                         
-                        // Close all dropdowns first
-                        closeAllDropdowns();
-                        
-                        // If it wasn't active, open it
-                        if (!isActive) {
-                            // Add active class FIRST for immediate arrow animation
+                        // If it's currently active, we're closing it
+                        if (isActive) {
+                            console.log('✅ Services closing - Arrow should point down');
+                            closeAllDropdowns();
+                        } else {
+                            // Close other dropdowns but not this one
+                            const areasToggle = document.querySelector('.mobile-nav .dropdown-toggle[href="#"]');
+                            if (areasToggle && areasToggle !== this) {
+                                const areasMenu = areasToggle.nextElementSibling;
+                                areasToggle.classList.remove('active');
+                                areasMenu.classList.remove('active', 'show');
+                                areasMenu.style.display = 'none';
+                            }
+                            
+                            // Open this dropdown
                             this.classList.add('active');
-                            
-                            // Force repaint to ensure arrow animation starts
-                            this.offsetHeight;
-                            
-                            // Then show dropdown
                             servicesMenu.classList.add('active', 'show');
                             servicesMenu.style.display = 'block';
                             
                             console.log('✅ Services opened - Arrow should point up now');
-                        } else {
-                            console.log('✅ Services closed (stayed closed)');
                         }
                     }
                 });
@@ -1104,24 +1106,26 @@
                         console.log('Service Areas currently active:', isActive);
                         console.log('Arrow found:', !!arrow);
                         
-                        // Close all dropdowns first
-                        closeAllDropdowns();
-                        
-                        // If it wasn't active, open it
-                        if (!isActive) {
-                            // Add active class FIRST for immediate arrow animation
+                        // If it's currently active, we're closing it
+                        if (isActive) {
+                            console.log('✅ Service Areas closing - Arrow should point down');
+                            closeAllDropdowns();
+                        } else {
+                            // Close other dropdowns but not this one
+                            const servicesToggle = document.querySelector('.mobile-nav a[href="javascript:void(0)"]');
+                            if (servicesToggle && servicesToggle !== this) {
+                                const servicesMenu = servicesToggle.nextElementSibling;
+                                servicesToggle.classList.remove('active');
+                                servicesMenu.classList.remove('active', 'show');
+                                servicesMenu.style.display = 'none';
+                            }
+                            
+                            // Open this dropdown
                             this.classList.add('active');
-                            
-                            // Force repaint to ensure arrow animation starts
-                            this.offsetHeight;
-                            
-                            // Then show dropdown
                             areasMenu.classList.add('active', 'show');
                             areasMenu.style.display = 'block';
                             
                             console.log('✅ Service Areas opened - Arrow should point up now');
-                        } else {
-                            console.log('✅ Service Areas closed (stayed closed)');
                         }
                     }
                 });
