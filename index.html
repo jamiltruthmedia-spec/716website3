@@ -1057,6 +1057,7 @@
                         e.stopPropagation();
                         
                         console.log('🎯 Services clicked!');
+                        console.log('🔍 Page loaded state check...');
                         
                         const servicesMenu = this.nextElementSibling;
                         const isActive = this.classList.contains('active');
@@ -1064,6 +1065,8 @@
                         
                         console.log('Services currently active:', isActive);
                         console.log('Arrow found:', !!arrow);
+                        console.log('Services menu display:', servicesMenu ? servicesMenu.style.display : 'not found');
+                        console.log('Services menu classes:', servicesMenu ? servicesMenu.className : 'not found');
                         
                         // If it's currently active, we're closing it
                         if (isActive) {
@@ -1098,6 +1101,7 @@
                         e.stopPropagation();
                         
                         console.log('🎯 Service Areas clicked!');
+                        console.log('🔍 Page loaded state check...');
                         
                         const areasMenu = this.nextElementSibling;
                         const isActive = this.classList.contains('active');
@@ -1105,6 +1109,8 @@
                         
                         console.log('Service Areas currently active:', isActive);
                         console.log('Arrow found:', !!arrow);
+                        console.log('Areas menu display:', areasMenu ? areasMenu.style.display : 'not found');
+                        console.log('Areas menu classes:', areasMenu ? areasMenu.className : 'not found');
                         
                         // If it's currently active, we're closing it
                         if (isActive) {
@@ -1132,6 +1138,22 @@
             }
         }
         
+        // Ensure clean initial state for dropdowns
+        console.log('🧹 Cleaning initial dropdown state...');
+        const allDropdownToggles = document.querySelectorAll('.mobile-nav .dropdown-toggle');
+        const allDropdownMenus = document.querySelectorAll('.mobile-nav .dropdown-menu');
+        
+        allDropdownToggles.forEach(toggle => {
+            toggle.classList.remove('active');
+            console.log('Removed active from toggle:', toggle.textContent.trim());
+        });
+        
+        allDropdownMenus.forEach(menu => {
+            menu.classList.remove('active', 'show');
+            menu.style.display = 'none';
+            console.log('Cleaned dropdown menu');
+        });
+        
         // Initialize dropdowns
         initializeDropdowns();
         
@@ -1143,6 +1165,17 @@
             console.log('🔧 Final setup check:');
             console.log('- Services toggle active:', servicesToggle?.classList.contains('active') || false);
             console.log('- Areas toggle active:', areasToggle?.classList.contains('active') || false);
+            
+            // Double-check clean state
+            if (servicesToggle?.classList.contains('active')) {
+                console.log('⚠️ Services still has active class - removing...');
+                servicesToggle.classList.remove('active');
+            }
+            if (areasToggle?.classList.contains('active')) {
+                console.log('⚠️ Service Areas still has active class - removing...');
+                areasToggle.classList.remove('active');
+            }
+            
             console.log('🎯 Ready! Try tapping the dropdowns now.');
             
             // Add manual test buttons for debugging
