@@ -1038,95 +1038,104 @@
             });
         }
         
-        // Enhanced dropdown handling - prevents text selection and ensures reliable toggling
+        // Simplified and bulletproof dropdown handling
         function initializeDropdowns() {
+            // Get all dropdown toggles
             const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
             
             dropdownToggles.forEach(toggle => {
-                // Prevent text selection on dropdown toggles
-                toggle.style.userSelect = 'none';
-                toggle.style.webkitUserSelect = 'none';
-                toggle.style.mozUserSelect = 'none';
-                toggle.style.msUserSelect = 'none';
-                
-                // Remove any existing event listeners by cloning (preserves innerHTML including arrows)
-                const newToggle = toggle.cloneNode(true);
-                toggle.parentNode.replaceChild(newToggle, toggle);
-            });
-            
-            // Re-select after cloning and add enhanced event listeners
-            const newDropdownToggles = document.querySelectorAll('.dropdown-toggle');
-            
-            newDropdownToggles.forEach(toggle => {
                 // Prevent text selection
                 toggle.style.userSelect = 'none';
                 toggle.style.webkitUserSelect = 'none';
                 toggle.style.mozUserSelect = 'none';
                 toggle.style.msUserSelect = 'none';
                 
-                // Enhanced click handler with perfect toggle behavior
-                toggle.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        e.stopImmediatePropagation();
-                        
-                        // Clear any text selection immediately
-                        if (window.getSelection) {
-                            window.getSelection().removeAllRanges();
-                        }
-                        
-                        const dropdownMenu = this.nextElementSibling;
-                        
-                        if (!dropdownMenu || !dropdownMenu.classList.contains('dropdown-menu')) {
-                            console.error('Dropdown menu not found for:', this.textContent);
-                            return;
-                        }
-                        
-                        // Check if THIS specific dropdown is currently active
-                        const isThisDropdownActive = this.classList.contains('active');
-                        
-                        // Always close all dropdowns and remove all highlighting
-                        closeAllDropdowns();
-                        
-                        // If THIS dropdown was NOT active, open it and highlight it
-                        if (!isThisDropdownActive) {
-                            // Open the dropdown
-                            dropdownMenu.classList.add('active', 'show');
-                            dropdownMenu.style.display = 'block';
-                            
-                            // Highlight the toggle (text and background)
-                            this.classList.add('active');
-                            
-                            // Successfully opened dropdown
-                        } else {
-                            // Successfully closed dropdown
-                        }
-                    }
-                });
-                
-                // Prevent text selection on touch devices
-                toggle.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                }, { passive: false });
-                
-                // Additional prevention for text selection
-                toggle.addEventListener('selectstart', function(e) {
-                    e.preventDefault();
-                    return false;
-                });
+                // Remove existing event listeners
+                const newToggle = toggle.cloneNode(true);
+                toggle.parentNode.replaceChild(newToggle, toggle);
             });
+            
+            // Re-attach event listeners to fresh elements
+            const freshToggles = document.querySelectorAll('.dropdown-toggle');
+            
+            freshToggles.forEach(toggle => {
+                // Prevent text selection
+                toggle.style.userSelect = 'none';
+                toggle.style.webkitUserSelect = 'none';
+                toggle.style.mozUserSelect = 'none';
+                toggle.style.msUserSelect = 'none';
+                
+                // Simple, reliable click handler
+                toggle.addEventListener('click', handleDropdownClick);
+                toggle.addEventListener('touchstart', preventTextSelection, { passive: false });
+                toggle.addEventListener('selectstart', preventTextSelection);
+            });
+        }
+        
+        // Separate function for dropdown click handling
+        function handleDropdownClick(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                
+                // Clear text selection
+                if (window.getSelection) {
+                    window.getSelection().removeAllRanges();
+                }
+                
+                const toggle = this;
+                const dropdownMenu = toggle.nextElementSibling;
+                
+                if (!dropdownMenu || !dropdownMenu.classList.contains('dropdown-menu')) {
+                    console.error('Dropdown menu not found');
+                    return;
+                }
+                
+                // Simple toggle logic
+                const isCurrentlyActive = toggle.classList.contains('active');
+                
+                console.log('Clicked:', toggle.textContent.trim(), 'Active:', isCurrentlyActive);
+                
+                // Close all dropdowns first
+                closeAllDropdowns();
+                
+                // If it wasn't active, open it
+                if (!isCurrentlyActive) {
+                    dropdownMenu.classList.add('active', 'show');
+                    dropdownMenu.style.display = 'block';
+                    toggle.classList.add('active');
+                    console.log('Opened:', toggle.textContent.trim());
+                } else {
+                    console.log('Closed:', toggle.textContent.trim());
+                }
+            }
+        }
+        
+        // Helper function for preventing text selection
+        function preventTextSelection(e) {
+            e.preventDefault();
+            return false;
         }
         
         // Initialize dropdowns
         initializeDropdowns();
         
-        // Verify dropdown arrows are properly initialized
+        // Verify dropdown setup and add test functionality
         setTimeout(() => {
             const arrows = document.querySelectorAll('.dropdown-arrow');
-            if (arrows.length === 0) {
-                console.warn('Warning: No dropdown arrows found. Check HTML structure.');
-            }
+            const toggles = document.querySelectorAll('.dropdown-toggle');
+            console.log('🔧 Dropdown setup check:');
+            console.log('- Arrows found:', arrows.length);
+            console.log('- Toggles found:', toggles.length);
+            
+            toggles.forEach((toggle, index) => {
+                const hasActive = toggle.classList.contains('active');
+                const hasEventListener = toggle.onclick !== null || toggle.addEventListener !== undefined;
+                console.log(`Toggle ${index + 1}: "${toggle.textContent.trim()}" - Active: ${hasActive}`);
+            });
+            
+            console.log('🎯 Dropdown functionality ready! Try tapping Services or Service Areas.');
         }, 100);
         
         // Enhanced function to close menu
