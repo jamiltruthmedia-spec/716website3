@@ -1060,18 +1060,27 @@
                         
                         const servicesMenu = this.nextElementSibling;
                         const isActive = this.classList.contains('active');
+                        const arrow = this.querySelector('.dropdown-arrow');
                         
                         console.log('Services currently active:', isActive);
+                        console.log('Arrow found:', !!arrow);
                         
                         // Close all dropdowns first
                         closeAllDropdowns();
                         
                         // If it wasn't active, open it
                         if (!isActive) {
+                            // Add active class FIRST for immediate arrow animation
+                            this.classList.add('active');
+                            
+                            // Force repaint to ensure arrow animation starts
+                            this.offsetHeight;
+                            
+                            // Then show dropdown
                             servicesMenu.classList.add('active', 'show');
                             servicesMenu.style.display = 'block';
-                            this.classList.add('active');
-                            console.log('✅ Services opened');
+                            
+                            console.log('✅ Services opened - Arrow should point up now');
                         } else {
                             console.log('✅ Services closed (stayed closed)');
                         }
@@ -1090,18 +1099,27 @@
                         
                         const areasMenu = this.nextElementSibling;
                         const isActive = this.classList.contains('active');
+                        const arrow = this.querySelector('.dropdown-arrow');
                         
                         console.log('Service Areas currently active:', isActive);
+                        console.log('Arrow found:', !!arrow);
                         
                         // Close all dropdowns first
                         closeAllDropdowns();
                         
                         // If it wasn't active, open it
                         if (!isActive) {
+                            // Add active class FIRST for immediate arrow animation
+                            this.classList.add('active');
+                            
+                            // Force repaint to ensure arrow animation starts
+                            this.offsetHeight;
+                            
+                            // Then show dropdown
                             areasMenu.classList.add('active', 'show');
                             areasMenu.style.display = 'block';
-                            this.classList.add('active');
-                            console.log('✅ Service Areas opened');
+                            
+                            console.log('✅ Service Areas opened - Arrow should point up now');
                         } else {
                             console.log('✅ Service Areas closed (stayed closed)');
                         }
