@@ -271,7 +271,6 @@ a {
     font-size: 4rem;
     font-weight: 800;
     margin-bottom: 1.5rem;
-    margin-top: 2rem;
     line-height: 1.1;
     color: #ffffff;
 }
@@ -1642,17 +1641,20 @@ input:focus, select:focus, textarea:focus {
         flex-direction: column;
         background-color: #000000;
         width: 100%;
+        height: calc(100vh - 70px);
         text-align: center;
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(255,255,255,0.05);
-        padding: 2rem 0;
+        padding: 2rem 0 4rem 0;
         gap: 0;
         border-top: 1px solid #333333;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     /* Fix hero section to account for fixed navbar */
     .hero {
-        padding-top: 220px;
+        padding-top: 180px;
     }
 
     .service-hero {
@@ -1714,6 +1716,9 @@ input:focus, select:focus, textarea:focus {
         padding: 0;
         border-radius: 0;
         display: none;
+        max-height: 300px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .nav-menu li:hover .dropdown-menu,
@@ -1753,7 +1758,6 @@ input:focus, select:focus, textarea:focus {
 
     .hero-content h1 {
         font-size: 2.5rem;
-        margin-top: 2.5rem;
     }
 
     .service-hero h1,
@@ -1830,7 +1834,7 @@ input:focus, select:focus, textarea:focus {
 
     /* Additional padding for smaller screens */
     .hero {
-        padding-top: 240px;
+        padding-top: 200px;
     }
 
     .service-hero {
@@ -1839,7 +1843,7 @@ input:focus, select:focus, textarea:focus {
 
     .hero-content h1 {
         font-size: 2rem;
-        margin-top: 3rem;
+        margin-top: 2rem;
     }
 
     .service-hero h1,

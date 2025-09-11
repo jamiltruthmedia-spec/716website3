@@ -1000,11 +1000,16 @@
                 if (isMenuOpen) {
                     hamburger.classList.add('active');
                     navMenu.classList.add('active');
+                    // Allow scrolling within the nav menu but prevent body scroll
                     body.style.overflow = 'hidden';
+                    body.style.position = 'fixed';
+                    body.style.width = '100%';
                 } else {
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
                     body.style.overflow = '';
+                    body.style.position = '';
+                    body.style.width = '';
                     closeAllDropdowns();
                 }
             });
@@ -1075,6 +1080,8 @@
                         hamburger.classList.remove('active');
                         navMenu.classList.remove('active');
                         body.style.overflow = '';
+                        body.style.position = '';
+                        body.style.width = '';
                         closeAllDropdowns();
                     }, 100);
                 }
@@ -1092,6 +1099,8 @@
                         hamburger.classList.remove('active');
                         navMenu.classList.remove('active');
                         body.style.overflow = '';
+                        body.style.position = '';
+                        body.style.width = '';
                         closeAllDropdowns();
                     }, 100);
                 }
@@ -1106,6 +1115,8 @@
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
                     body.style.overflow = '';
+                    body.style.position = '';
+                    body.style.width = '';
                     closeAllDropdowns();
                 }
             }
@@ -1132,6 +1143,8 @@
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
                     body.style.overflow = '';
+                    body.style.position = '';
+                    body.style.width = '';
                     closeAllDropdowns();
                     
                     // Reset dropdown styles for desktop
