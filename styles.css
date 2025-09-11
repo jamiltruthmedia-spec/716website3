@@ -271,6 +271,7 @@ a {
     font-size: 4rem;
     font-weight: 800;
     margin-bottom: 1.5rem;
+    margin-top: 2rem;
     line-height: 1.1;
     color: #ffffff;
 }
@@ -1651,7 +1652,7 @@ input:focus, select:focus, textarea:focus {
 
     /* Fix hero section to account for fixed navbar */
     .hero {
-        padding-top: 180px;
+        padding-top: 220px;
     }
 
     .service-hero {
@@ -1752,6 +1753,7 @@ input:focus, select:focus, textarea:focus {
 
     .hero-content h1 {
         font-size: 2.5rem;
+        margin-top: 2.5rem;
     }
 
     .service-hero h1,
@@ -1828,7 +1830,7 @@ input:focus, select:focus, textarea:focus {
 
     /* Additional padding for smaller screens */
     .hero {
-        padding-top: 200px;
+        padding-top: 240px;
     }
 
     .service-hero {
@@ -1837,7 +1839,7 @@ input:focus, select:focus, textarea:focus {
 
     .hero-content h1 {
         font-size: 2rem;
-        margin-top: 2rem;
+        margin-top: 3rem;
     }
 
     .service-hero h1,
