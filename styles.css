@@ -1504,19 +1504,23 @@ input:focus, select:focus, textarea:focus {
     height: 3px;
     background-color: #ffffff;
     margin: 3px 0;
-    transition: 0.3s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
 }
 
 .hamburger.active .bar:nth-child(2) {
     opacity: 0;
+    transition: opacity 0.15s ease;
 }
 
 .hamburger.active .bar:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hamburger.active .bar:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Additional sections */
@@ -1643,13 +1647,17 @@ input:focus, select:focus, textarea:focus {
         width: 100%;
         height: calc(100vh - 70px);
         text-align: center;
-        transition: 0.3s;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 10px 27px rgba(255,255,255,0.05);
         padding: 2rem 0 4rem 0;
         gap: 0;
         border-top: 1px solid #333333;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        /* Enhanced scrolling performance */
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        will-change: left;
     }
 
     /* Fix hero section to account for fixed navbar */
