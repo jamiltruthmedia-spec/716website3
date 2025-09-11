@@ -1038,105 +1038,99 @@
             });
         }
         
-        // Simplified and bulletproof dropdown handling
+        // Direct dropdown handling without cloning - testing approach
         function initializeDropdowns() {
-            // Get all dropdown toggles
-            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            console.log('🔧 Initializing dropdowns...');
             
-            dropdownToggles.forEach(toggle => {
-                // Prevent text selection
-                toggle.style.userSelect = 'none';
-                toggle.style.webkitUserSelect = 'none';
-                toggle.style.mozUserSelect = 'none';
-                toggle.style.msUserSelect = 'none';
-                
-                // Remove existing event listeners
-                const newToggle = toggle.cloneNode(true);
-                toggle.parentNode.replaceChild(newToggle, toggle);
-            });
+            // Get dropdown toggles directly
+            const servicesToggle = document.querySelector('a[href="#services"]');
+            const areasToggle = document.querySelector('a[href="#areas"]');
             
-            // Re-attach event listeners to fresh elements
-            const freshToggles = document.querySelectorAll('.dropdown-toggle');
+            console.log('Services toggle found:', !!servicesToggle);
+            console.log('Areas toggle found:', !!areasToggle);
             
-            freshToggles.forEach(toggle => {
-                // Prevent text selection
-                toggle.style.userSelect = 'none';
-                toggle.style.webkitUserSelect = 'none';
-                toggle.style.mozUserSelect = 'none';
-                toggle.style.msUserSelect = 'none';
-                
-                // Simple, reliable click handler
-                toggle.addEventListener('click', handleDropdownClick);
-                toggle.addEventListener('touchstart', preventTextSelection, { passive: false });
-                toggle.addEventListener('selectstart', preventTextSelection);
-            });
-        }
-        
-        // Separate function for dropdown click handling
-        function handleDropdownClick(e) {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-                
-                // Clear text selection
-                if (window.getSelection) {
-                    window.getSelection().removeAllRanges();
-                }
-                
-                const toggle = this;
-                const dropdownMenu = toggle.nextElementSibling;
-                
-                if (!dropdownMenu || !dropdownMenu.classList.contains('dropdown-menu')) {
-                    console.error('Dropdown menu not found');
-                    return;
-                }
-                
-                // Simple toggle logic
-                const isCurrentlyActive = toggle.classList.contains('active');
-                
-                console.log('Clicked:', toggle.textContent.trim(), 'Active:', isCurrentlyActive);
-                
-                // Close all dropdowns first
-                closeAllDropdowns();
-                
-                // If it wasn't active, open it
-                if (!isCurrentlyActive) {
-                    dropdownMenu.classList.add('active', 'show');
-                    dropdownMenu.style.display = 'block';
-                    toggle.classList.add('active');
-                    console.log('Opened:', toggle.textContent.trim());
-                } else {
-                    console.log('Closed:', toggle.textContent.trim());
-                }
+            // Direct event handling for Services
+            if (servicesToggle) {
+                servicesToggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        console.log('🎯 Services clicked!');
+                        
+                        const servicesMenu = this.nextElementSibling;
+                        const isActive = this.classList.contains('active');
+                        
+                        console.log('Services currently active:', isActive);
+                        
+                        // Close all dropdowns first
+                        closeAllDropdowns();
+                        
+                        // If it wasn't active, open it
+                        if (!isActive) {
+                            servicesMenu.classList.add('active', 'show');
+                            servicesMenu.style.display = 'block';
+                            this.classList.add('active');
+                            console.log('✅ Services opened');
+                        } else {
+                            console.log('✅ Services closed (stayed closed)');
+                        }
+                    }
+                });
             }
-        }
-        
-        // Helper function for preventing text selection
-        function preventTextSelection(e) {
-            e.preventDefault();
-            return false;
+            
+            // Direct event handling for Service Areas
+            if (areasToggle) {
+                areasToggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        console.log('🎯 Service Areas clicked!');
+                        
+                        const areasMenu = this.nextElementSibling;
+                        const isActive = this.classList.contains('active');
+                        
+                        console.log('Service Areas currently active:', isActive);
+                        
+                        // Close all dropdowns first
+                        closeAllDropdowns();
+                        
+                        // If it wasn't active, open it
+                        if (!isActive) {
+                            areasMenu.classList.add('active', 'show');
+                            areasMenu.style.display = 'block';
+                            this.classList.add('active');
+                            console.log('✅ Service Areas opened');
+                        } else {
+                            console.log('✅ Service Areas closed (stayed closed)');
+                        }
+                    }
+                });
+            }
         }
         
         // Initialize dropdowns
         initializeDropdowns();
         
-        // Verify dropdown setup and add test functionality
+        // Test dropdown functionality
         setTimeout(() => {
-            const arrows = document.querySelectorAll('.dropdown-arrow');
-            const toggles = document.querySelectorAll('.dropdown-toggle');
-            console.log('🔧 Dropdown setup check:');
-            console.log('- Arrows found:', arrows.length);
-            console.log('- Toggles found:', toggles.length);
+            const servicesToggle = document.querySelector('a[href="#services"]');
+            const areasToggle = document.querySelector('a[href="#areas"]');
             
-            toggles.forEach((toggle, index) => {
-                const hasActive = toggle.classList.contains('active');
-                const hasEventListener = toggle.onclick !== null || toggle.addEventListener !== undefined;
-                console.log(`Toggle ${index + 1}: "${toggle.textContent.trim()}" - Active: ${hasActive}`);
-            });
+            console.log('🔧 Final setup check:');
+            console.log('- Services toggle active:', servicesToggle?.classList.contains('active') || false);
+            console.log('- Areas toggle active:', areasToggle?.classList.contains('active') || false);
+            console.log('🎯 Ready! Try tapping the dropdowns now.');
             
-            console.log('🎯 Dropdown functionality ready! Try tapping Services or Service Areas.');
-        }, 100);
+            // Add manual test buttons for debugging
+            if (servicesToggle) {
+                console.log('Services element found:', servicesToggle.textContent.trim());
+            }
+            if (areasToggle) {
+                console.log('Areas element found:', areasToggle.textContent.trim());
+            }
+        }, 200);
         
         // Enhanced function to close menu
         function closeMenu() {
