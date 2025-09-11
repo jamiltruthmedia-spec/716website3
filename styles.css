@@ -113,6 +113,18 @@ a {
     color: #4F7CFF;
 }
 
+/* Dropdown Arrow */
+.dropdown-arrow {
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-toggle.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
 /* Dropdown Menu */
 .dropdown-menu {
     position: absolute;
@@ -1709,6 +1721,32 @@ input:focus, select:focus, textarea:focus {
         display: block;
         border-bottom: 1px solid #333333;
         color: #ffffff;
+        /* Prevent text selection on mobile dropdowns */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    /* Enhanced dropdown toggle styling for mobile */
+    .dropdown-toggle {
+        position: relative;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+    
+    .dropdown-toggle.active {
+        background-color: rgba(79, 124, 255, 0.1);
+    }
+    
+    /* Make dropdown arrows more visible on mobile */
+    @media (max-width: 768px) {
+        .dropdown-arrow {
+            font-size: 0.9rem;
+            margin-left: 0.8rem;
+            color: #4F7CFF;
+            font-weight: bold;
+        }
     }
 
     /* Mobile dropdown styles */
