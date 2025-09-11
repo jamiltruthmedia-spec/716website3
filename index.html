@@ -1049,7 +1049,7 @@
                 toggle.style.mozUserSelect = 'none';
                 toggle.style.msUserSelect = 'none';
                 
-                // Remove any existing event listeners by cloning
+                // Remove any existing event listeners by cloning (preserves innerHTML including arrows)
                 const newToggle = toggle.cloneNode(true);
                 toggle.parentNode.replaceChild(newToggle, toggle);
             });
@@ -1064,14 +1064,14 @@
                 toggle.style.mozUserSelect = 'none';
                 toggle.style.msUserSelect = 'none';
                 
-                // Enhanced click handler with better reliability
+                // Enhanced click handler with perfect toggle behavior
                 toggle.addEventListener('click', function(e) {
                     if (window.innerWidth <= 768) {
                         e.preventDefault();
                         e.stopPropagation();
                         e.stopImmediatePropagation();
                         
-                        // Clear any text selection
+                        // Clear any text selection immediately
                         if (window.getSelection) {
                             window.getSelection().removeAllRanges();
                         }
@@ -1083,16 +1083,24 @@
                             return;
                         }
                         
-                        const isCurrentlyActive = this.classList.contains('active');
+                        // Check if THIS specific dropdown is currently active
+                        const isThisDropdownActive = this.classList.contains('active');
                         
-                        // Always close all dropdowns first
+                        // Always close all dropdowns and remove all highlighting
                         closeAllDropdowns();
                         
-                        // If it wasn't active, open this one
-                        if (!isCurrentlyActive) {
+                        // If THIS dropdown was NOT active, open it and highlight it
+                        if (!isThisDropdownActive) {
+                            // Open the dropdown
                             dropdownMenu.classList.add('active', 'show');
                             dropdownMenu.style.display = 'block';
+                            
+                            // Highlight the toggle (text and background)
                             this.classList.add('active');
+                            
+                            // Successfully opened dropdown
+                        } else {
+                            // Successfully closed dropdown
                         }
                     }
                 });
@@ -1112,6 +1120,14 @@
         
         // Initialize dropdowns
         initializeDropdowns();
+        
+        // Verify dropdown arrows are properly initialized
+        setTimeout(() => {
+            const arrows = document.querySelectorAll('.dropdown-arrow');
+            if (arrows.length === 0) {
+                console.warn('Warning: No dropdown arrows found. Check HTML structure.');
+            }
+        }, 100);
         
         // Enhanced function to close menu
         function closeMenu() {
