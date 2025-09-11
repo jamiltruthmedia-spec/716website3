@@ -1651,7 +1651,7 @@ input:focus, select:focus, textarea:focus {
 
     /* Fix hero section to account for fixed navbar */
     .hero {
-        padding-top: 150px;
+        padding-top: 180px;
     }
 
     .service-hero {
@@ -1828,7 +1828,7 @@ input:focus, select:focus, textarea:focus {
 
     /* Additional padding for smaller screens */
     .hero {
-        padding-top: 170px;
+        padding-top: 200px;
     }
 
     .service-hero {
@@ -1837,6 +1837,7 @@ input:focus, select:focus, textarea:focus {
 
     .hero-content h1 {
         font-size: 2rem;
+        margin-top: 2rem;
     }
 
     .service-hero h1,
