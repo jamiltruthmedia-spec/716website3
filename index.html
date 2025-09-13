@@ -1039,9 +1039,9 @@
             });
         }
         
-        // Direct dropdown handling without cloning - testing approach
+        // Mobile-only dropdown handling
         function initializeDropdowns() {
-            console.log('🔧 Initializing dropdowns...');
+            console.log('🔧 Initializing mobile dropdowns...');
             
             // Get dropdown toggles directly from navigation only
             const servicesToggle = document.querySelector('.nav-menu a[href="#services"]');
@@ -1050,24 +1050,18 @@
             console.log('Services toggle found:', !!servicesToggle);
             console.log('Areas toggle found:', !!areasToggle);
             
-            // Direct event handling for Services
+            // Direct event handling for Services - MOBILE ONLY
             if (servicesToggle) {
                 servicesToggle.addEventListener('click', function(e) {
+                    // Only handle clicks on mobile devices
                     if (window.innerWidth <= 768) {
                         e.preventDefault();
                         e.stopPropagation();
                         
-                        console.log('🎯 Services clicked!');
-                        console.log('🔍 Page loaded state check...');
+                        console.log('🎯 Mobile Services clicked!');
                         
                         const servicesMenu = this.nextElementSibling;
                         const isActive = this.classList.contains('active');
-                        const arrow = this.querySelector('.dropdown-arrow');
-                        
-                        console.log('Services currently active:', isActive);
-                        console.log('Arrow found:', !!arrow);
-                        console.log('Services menu display:', servicesMenu ? servicesMenu.style.display : 'not found');
-                        console.log('Services menu classes:', servicesMenu ? servicesMenu.className : 'not found');
                         
                         // If it's currently active, we're closing it
                         if (isActive) {
@@ -1081,6 +1075,8 @@
                                 areasToggle.classList.remove('active');
                                 areasMenu.classList.remove('active', 'show');
                                 areasMenu.style.display = 'none';
+                                const areasArrow = areasToggle.querySelector('.dropdown-arrow');
+                                if (areasArrow) areasArrow.style.transform = 'rotate(0deg)';
                             }
                             
                             // Open this dropdown
@@ -1088,37 +1084,31 @@
                             servicesMenu.classList.add('active', 'show');
                             servicesMenu.style.display = 'block';
                             
-                            // Force arrow animation by triggering reflow
+                            // Force arrow animation
                             const arrow = this.querySelector('.dropdown-arrow');
                             if (arrow) {
                                 arrow.style.transform = 'rotate(180deg)';
-                                console.log('🎯 Force-applied arrow rotation');
                             }
                             
                             console.log('✅ Services opened - Arrow should point up now');
                         }
                     }
+                    // On desktop, let the CSS hover handle it - don't prevent default
                 });
             }
             
-            // Direct event handling for Service Areas
+            // Direct event handling for Service Areas - MOBILE ONLY
             if (areasToggle) {
                 areasToggle.addEventListener('click', function(e) {
+                    // Only handle clicks on mobile devices
                     if (window.innerWidth <= 768) {
                         e.preventDefault();
                         e.stopPropagation();
                         
-                        console.log('🎯 Service Areas clicked!');
-                        console.log('🔍 Page loaded state check...');
+                        console.log('🎯 Mobile Service Areas clicked!');
                         
                         const areasMenu = this.nextElementSibling;
                         const isActive = this.classList.contains('active');
-                        const arrow = this.querySelector('.dropdown-arrow');
-                        
-                        console.log('Service Areas currently active:', isActive);
-                        console.log('Arrow found:', !!arrow);
-                        console.log('Areas menu display:', areasMenu ? areasMenu.style.display : 'not found');
-                        console.log('Areas menu classes:', areasMenu ? areasMenu.className : 'not found');
                         
                         // If it's currently active, we're closing it
                         if (isActive) {
@@ -1132,6 +1122,8 @@
                                 servicesToggle.classList.remove('active');
                                 servicesMenu.classList.remove('active', 'show');
                                 servicesMenu.style.display = 'none';
+                                const servicesArrow = servicesToggle.querySelector('.dropdown-arrow');
+                                if (servicesArrow) servicesArrow.style.transform = 'rotate(0deg)';
                             }
                             
                             // Open this dropdown
@@ -1139,16 +1131,16 @@
                             areasMenu.classList.add('active', 'show');
                             areasMenu.style.display = 'block';
                             
-                            // Force arrow animation by triggering reflow
+                            // Force arrow animation
                             const arrow = this.querySelector('.dropdown-arrow');
                             if (arrow) {
                                 arrow.style.transform = 'rotate(180deg)';
-                                console.log('🎯 Force-applied arrow rotation');
                             }
                             
                             console.log('✅ Service Areas opened - Arrow should point up now');
                         }
                     }
+                    // On desktop, let the CSS hover handle it - don't prevent default
                 });
             }
         }
@@ -1286,14 +1278,24 @@
         function closeAllDropdowns() {
             document.querySelectorAll('.nav-menu .dropdown-menu').forEach(menu => {
                 menu.classList.remove('active', 'show');
-                menu.style.display = 'none';
+                // Only set display none on mobile
+                if (window.innerWidth <= 768) {
+                    menu.style.display = 'none';
+                } else {
+                    menu.style.display = '';
+                }
             });
             document.querySelectorAll('.nav-menu .dropdown-toggle').forEach(toggle => {
                 toggle.classList.remove('active');
                 const arrow = toggle.querySelector('.dropdown-arrow');
                 if (arrow) {
-                    arrow.style.transform = 'rotate(0deg)';
-                    console.log('🎯 Reset arrow rotation to 0deg');
+                    // Only force arrow rotation on mobile
+                    if (window.innerWidth <= 768) {
+                        arrow.style.transform = 'rotate(0deg)';
+                    } else {
+                        arrow.style.transform = '';
+                    }
+                    console.log('🎯 Reset arrow rotation');
                 }
             });
         }
@@ -1321,9 +1323,19 @@
                         closeAllDropdowns();
                     }
                     
-                    // Reset dropdown styles for desktop
+                    // Reset dropdown styles for desktop - clear mobile overrides
                     document.querySelectorAll('.dropdown-menu').forEach(menu => {
                         menu.style.display = '';
+                        menu.classList.remove('active', 'show');
+                    });
+                    
+                    // Reset dropdown toggles for desktop
+                    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+                        toggle.classList.remove('active');
+                        const arrow = toggle.querySelector('.dropdown-arrow');
+                        if (arrow) {
+                            arrow.style.transform = '';
+                        }
                     });
                 }
             }, 250);
