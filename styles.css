@@ -1683,6 +1683,9 @@ input:focus, select:focus, textarea:focus {
     /* Fix hero section to account for fixed navbar */
     .hero {
         padding-top: 180px;
+        padding-bottom: 60px;
+        height: auto;
+        min-height: 100vh;
     }
 
     .service-hero {
@@ -1850,6 +1853,7 @@ input:focus, select:focus, textarea:focus {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
+        margin-bottom: 3rem;
     }
 
     .contact-content {
@@ -1899,6 +1903,8 @@ input:focus, select:focus, textarea:focus {
     /* Additional padding for smaller screens */
     .hero {
         padding-top: 200px;
+        padding-bottom: 80px;
+        min-height: 100vh;
     }
 
     .service-hero {
