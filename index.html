@@ -1043,12 +1043,21 @@
         function initializeDropdowns() {
             console.log('🔧 Initializing dropdowns...');
             
-            // Get dropdown toggles by class instead of href
-            const servicesToggle = document.querySelector('.nav-menu .dropdown-toggle:nth-of-type(1)');
-            const areasToggle = document.querySelector('.nav-menu .dropdown-toggle:nth-of-type(2)');
+            // Get dropdown toggles by more specific selectors
+            const dropdownToggles = document.querySelectorAll('.nav-menu .dropdown-toggle');
+            const servicesToggle = dropdownToggles[0]; // First dropdown toggle (Services)
+            const areasToggle = dropdownToggles[1]; // Second dropdown toggle (Service Areas)
             
+            console.log('Total dropdown toggles found:', dropdownToggles.length);
             console.log('Services toggle found:', !!servicesToggle);
             console.log('Areas toggle found:', !!areasToggle);
+            
+            if (servicesToggle) {
+                console.log('Services toggle text:', servicesToggle.textContent.trim());
+            }
+            if (areasToggle) {
+                console.log('Areas toggle text:', areasToggle.textContent.trim());
+            }
             
             // Direct event handling for Services
             if (servicesToggle) {
@@ -1067,7 +1076,6 @@
                         closeAllDropdowns();
                     } else {
                         // Close other dropdowns but not this one
-                        const areasToggle = document.querySelector('.nav-menu .dropdown-toggle:nth-of-type(2)');
                         if (areasToggle && areasToggle !== this) {
                             const areasMenu = areasToggle.nextElementSibling;
                             areasToggle.classList.remove('active');
@@ -1116,7 +1124,6 @@
                         closeAllDropdowns();
                     } else {
                         // Close other dropdowns but not this one
-                        const servicesToggle = document.querySelector('.nav-menu .dropdown-toggle:nth-of-type(1)');
                         if (servicesToggle && servicesToggle !== this) {
                             const servicesMenu = servicesToggle.nextElementSibling;
                             servicesToggle.classList.remove('active');
@@ -1151,57 +1158,35 @@
         
         // Ensure clean initial state for dropdowns
         console.log('🧹 Cleaning initial dropdown state...');
-        const allDropdownToggles = document.querySelectorAll('.nav-menu .dropdown-toggle');
-        const allDropdownMenus = document.querySelectorAll('.nav-menu .dropdown-menu');
         
-        allDropdownToggles.forEach(toggle => {
-            toggle.classList.remove('active');
-            const arrow = toggle.querySelector('.dropdown-arrow');
-            if (arrow) {
-                arrow.style.transform = 'rotate(0deg)';
-                console.log('🎯 Reset arrow to initial position');
-            }
-            console.log('Removed active from toggle:', toggle.textContent.trim());
-        });
-        
-        allDropdownMenus.forEach(menu => {
-            menu.classList.remove('active', 'show');
-            menu.style.display = 'none';
-            console.log('Cleaned dropdown menu');
-        });
-        
-        // Initialize dropdowns
+        // Initialize dropdowns immediately
         initializeDropdowns();
         
-        // Test dropdown functionality
+        // Clean state after initialization
         setTimeout(() => {
-            const servicesToggle = document.querySelector('.nav-menu a[href="#services"]');
-            const areasToggle = document.querySelector('.nav-menu a[href="#areas"]');
+            const allDropdownToggles = document.querySelectorAll('.nav-menu .dropdown-toggle');
+            const allDropdownMenus = document.querySelectorAll('.nav-menu .dropdown-menu');
             
-            console.log('🔧 Final setup check:');
-            console.log('- Services toggle active:', servicesToggle?.classList.contains('active') || false);
-            console.log('- Areas toggle active:', areasToggle?.classList.contains('active') || false);
+            allDropdownToggles.forEach(toggle => {
+                toggle.classList.remove('active');
+                const arrow = toggle.querySelector('.dropdown-arrow');
+                if (arrow) {
+                    arrow.style.transform = '';
+                }
+                console.log('Cleaned toggle:', toggle.textContent.trim());
+            });
             
-            // Double-check clean state
-            if (servicesToggle?.classList.contains('active')) {
-                console.log('⚠️ Services still has active class - removing...');
-                servicesToggle.classList.remove('active');
-            }
-            if (areasToggle?.classList.contains('active')) {
-                console.log('⚠️ Service Areas still has active class - removing...');
-                areasToggle.classList.remove('active');
-            }
+            allDropdownMenus.forEach(menu => {
+                menu.classList.remove('active', 'show');
+                if (window.innerWidth <= 768) {
+                    menu.style.display = 'none';
+                } else {
+                    menu.style.display = '';
+                }
+            });
             
-            console.log('🎯 Ready! Try tapping the dropdowns now.');
-            
-            // Add manual test buttons for debugging
-            if (servicesToggle) {
-                console.log('Services element found:', servicesToggle.textContent.trim());
-            }
-            if (areasToggle) {
-                console.log('Areas element found:', areasToggle.textContent.trim());
-            }
-        }, 200);
+            console.log('🎯 Dropdowns ready!');
+        }, 100);
         
         // Enhanced function to close menu
         function closeMenu() {
