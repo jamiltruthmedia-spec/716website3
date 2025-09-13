@@ -145,25 +145,16 @@ a {
     z-index: 9999;
 }
 
-/* Desktop hover and click functionality */
+/* Desktop click-only functionality */
 @media (min-width: 769px) {
-    .nav-menu li:hover .dropdown-menu,
     .nav-menu li .dropdown-toggle.active + .dropdown-menu {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
     }
     
-    .nav-menu li:hover .dropdown-toggle .dropdown-arrow,
     .nav-menu li .dropdown-toggle.active .dropdown-arrow {
         transform: rotate(180deg);
-    }
-    
-    /* Ensure dropdown stays open when hovering over the menu itself */
-    .nav-menu li .dropdown-menu:hover {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
     }
 }
 
