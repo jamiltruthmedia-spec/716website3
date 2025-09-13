@@ -445,7 +445,7 @@
             </div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#services" class="dropdown-toggle">Services <span class="dropdown-arrow">▼</span></a>
+                <li><a href="javascript:void(0)" class="dropdown-toggle">Services <span class="dropdown-arrow">▼</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="boat-detailing.html">Boat Detailing</a></li>
                         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
@@ -461,7 +461,7 @@
                         <li><a href="window-tinting.html">Window Tinting</a></li>
                     </ul>
                 </li>
-                <li><a href="#areas" class="dropdown-toggle">Service Areas <span class="dropdown-arrow">▼</span></a>
+                <li><a href="javascript:void(0)" class="dropdown-toggle">Service Areas <span class="dropdown-arrow">▼</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="locations/clarence-car-detailing.html">Clarence, NY</a></li>
                         <li><a href="locations/east-amherst-car-detailing.html">East Amherst, NY</a></li>
@@ -1039,108 +1039,112 @@
             });
         }
         
-        // Mobile-only dropdown handling
+        // Dropdown handling for both mobile and desktop
         function initializeDropdowns() {
-            console.log('🔧 Initializing mobile dropdowns...');
+            console.log('🔧 Initializing dropdowns...');
             
-            // Get dropdown toggles directly from navigation only
-            const servicesToggle = document.querySelector('.nav-menu a[href="#services"]');
-            const areasToggle = document.querySelector('.nav-menu a[href="#areas"]');
+            // Get dropdown toggles by class instead of href
+            const servicesToggle = document.querySelector('.nav-menu .dropdown-toggle:nth-of-type(1)');
+            const areasToggle = document.querySelector('.nav-menu .dropdown-toggle:nth-of-type(2)');
             
             console.log('Services toggle found:', !!servicesToggle);
             console.log('Areas toggle found:', !!areasToggle);
             
-            // Direct event handling for Services - MOBILE ONLY
+            // Direct event handling for Services
             if (servicesToggle) {
                 servicesToggle.addEventListener('click', function(e) {
-                    // Only handle clicks on mobile devices
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        console.log('🎯 Mobile Services clicked!');
-                        
-                        const servicesMenu = this.nextElementSibling;
-                        const isActive = this.classList.contains('active');
-                        
-                        // If it's currently active, we're closing it
-                        if (isActive) {
-                            console.log('✅ Services closing - Arrow should point down');
-                            closeAllDropdowns();
-                        } else {
-                            // Close other dropdowns but not this one
-                            const areasToggle = document.querySelector('.nav-menu a[href="#areas"]');
-                            if (areasToggle && areasToggle !== this) {
-                                const areasMenu = areasToggle.nextElementSibling;
-                                areasToggle.classList.remove('active');
-                                areasMenu.classList.remove('active', 'show');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    console.log('🎯 Services clicked!');
+                    
+                    const servicesMenu = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // If it's currently active, we're closing it
+                    if (isActive) {
+                        console.log('✅ Services closing');
+                        closeAllDropdowns();
+                    } else {
+                        // Close other dropdowns but not this one
+                        const areasToggle = document.querySelector('.nav-menu .dropdown-toggle:nth-of-type(2)');
+                        if (areasToggle && areasToggle !== this) {
+                            const areasMenu = areasToggle.nextElementSibling;
+                            areasToggle.classList.remove('active');
+                            areasMenu.classList.remove('active', 'show');
+                            if (window.innerWidth <= 768) {
                                 areasMenu.style.display = 'none';
-                                const areasArrow = areasToggle.querySelector('.dropdown-arrow');
-                                if (areasArrow) areasArrow.style.transform = 'rotate(0deg)';
                             }
-                            
-                            // Open this dropdown
-                            this.classList.add('active');
-                            servicesMenu.classList.add('active', 'show');
-                            servicesMenu.style.display = 'block';
-                            
-                            // Force arrow animation
-                            const arrow = this.querySelector('.dropdown-arrow');
-                            if (arrow) {
-                                arrow.style.transform = 'rotate(180deg)';
+                            const areasArrow = areasToggle.querySelector('.dropdown-arrow');
+                            if (areasArrow && window.innerWidth <= 768) {
+                                areasArrow.style.transform = 'rotate(0deg)';
                             }
-                            
-                            console.log('✅ Services opened - Arrow should point up now');
                         }
+                        
+                        // Open this dropdown
+                        this.classList.add('active');
+                        servicesMenu.classList.add('active', 'show');
+                        if (window.innerWidth <= 768) {
+                            servicesMenu.style.display = 'block';
+                        }
+                        
+                        // Force arrow animation on mobile
+                        const arrow = this.querySelector('.dropdown-arrow');
+                        if (arrow && window.innerWidth <= 768) {
+                            arrow.style.transform = 'rotate(180deg)';
+                        }
+                        
+                        console.log('✅ Services opened');
                     }
-                    // On desktop, let the CSS hover handle it - don't prevent default
                 });
             }
             
-            // Direct event handling for Service Areas - MOBILE ONLY
+            // Direct event handling for Service Areas
             if (areasToggle) {
                 areasToggle.addEventListener('click', function(e) {
-                    // Only handle clicks on mobile devices
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        console.log('🎯 Mobile Service Areas clicked!');
-                        
-                        const areasMenu = this.nextElementSibling;
-                        const isActive = this.classList.contains('active');
-                        
-                        // If it's currently active, we're closing it
-                        if (isActive) {
-                            console.log('✅ Service Areas closing - Arrow should point down');
-                            closeAllDropdowns();
-                        } else {
-                            // Close other dropdowns but not this one
-                            const servicesToggle = document.querySelector('.nav-menu a[href="#services"]');
-                            if (servicesToggle && servicesToggle !== this) {
-                                const servicesMenu = servicesToggle.nextElementSibling;
-                                servicesToggle.classList.remove('active');
-                                servicesMenu.classList.remove('active', 'show');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    console.log('🎯 Service Areas clicked!');
+                    
+                    const areasMenu = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // If it's currently active, we're closing it
+                    if (isActive) {
+                        console.log('✅ Service Areas closing');
+                        closeAllDropdowns();
+                    } else {
+                        // Close other dropdowns but not this one
+                        const servicesToggle = document.querySelector('.nav-menu .dropdown-toggle:nth-of-type(1)');
+                        if (servicesToggle && servicesToggle !== this) {
+                            const servicesMenu = servicesToggle.nextElementSibling;
+                            servicesToggle.classList.remove('active');
+                            servicesMenu.classList.remove('active', 'show');
+                            if (window.innerWidth <= 768) {
                                 servicesMenu.style.display = 'none';
-                                const servicesArrow = servicesToggle.querySelector('.dropdown-arrow');
-                                if (servicesArrow) servicesArrow.style.transform = 'rotate(0deg)';
                             }
-                            
-                            // Open this dropdown
-                            this.classList.add('active');
-                            areasMenu.classList.add('active', 'show');
-                            areasMenu.style.display = 'block';
-                            
-                            // Force arrow animation
-                            const arrow = this.querySelector('.dropdown-arrow');
-                            if (arrow) {
-                                arrow.style.transform = 'rotate(180deg)';
+                            const servicesArrow = servicesToggle.querySelector('.dropdown-arrow');
+                            if (servicesArrow && window.innerWidth <= 768) {
+                                servicesArrow.style.transform = 'rotate(0deg)';
                             }
-                            
-                            console.log('✅ Service Areas opened - Arrow should point up now');
                         }
+                        
+                        // Open this dropdown
+                        this.classList.add('active');
+                        areasMenu.classList.add('active', 'show');
+                        if (window.innerWidth <= 768) {
+                            areasMenu.style.display = 'block';
+                        }
+                        
+                        // Force arrow animation on mobile
+                        const arrow = this.querySelector('.dropdown-arrow');
+                        if (arrow && window.innerWidth <= 768) {
+                            arrow.style.transform = 'rotate(180deg)';
+                        }
+                        
+                        console.log('✅ Service Areas opened');
                     }
-                    // On desktop, let the CSS hover handle it - don't prevent default
                 });
             }
         }
@@ -1249,6 +1253,29 @@
                 // Check if click is outside menu and hamburger
                 if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
                     closeMenu();
+                }
+            } else if (window.innerWidth > 768) {
+                // On desktop, close dropdowns when clicking outside
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+                let clickedInsideDropdown = false;
+                
+                // Check if click was inside any dropdown
+                dropdownToggles.forEach(toggle => {
+                    if (toggle.contains(e.target)) {
+                        clickedInsideDropdown = true;
+                    }
+                });
+                
+                dropdownMenus.forEach(menu => {
+                    if (menu.contains(e.target)) {
+                        clickedInsideDropdown = true;
+                    }
+                });
+                
+                // If click was outside all dropdowns, close them
+                if (!clickedInsideDropdown) {
+                    closeAllDropdowns();
                 }
             }
         });
