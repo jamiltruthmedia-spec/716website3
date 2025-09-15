@@ -135,7 +135,7 @@
             </div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#services" class="dropdown-toggle">Services <span class="dropdown-arrow">▼</span></a>
+                <li><a href="javascript:void(0)" class="dropdown-toggle">Services <span class="dropdown-arrow">▼</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="boat-detailing.html">Boat Detailing</a></li>
                         <li><a href="ceramic-coating.html">Ceramic Coating</a></li>
@@ -151,7 +151,7 @@
                         <li><a href="window-tinting.html">Window Tinting</a></li>
                     </ul>
                 </li>
-                <li><a href="#areas" class="dropdown-toggle">Service Areas <span class="dropdown-arrow">▼</span></a>
+                <li><a href="javascript:void(0)" class="dropdown-toggle">Service Areas <span class="dropdown-arrow">▼</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="locations/clarence-car-detailing.html">Clarence, NY</a></li>
                         <li><a href="locations/williamsville-car-detailing.html">Williamsville, NY</a></li>
@@ -163,8 +163,8 @@
                         <li><a href="locations/kenmore-car-detailing.html">Kenmore, NY</a></li>
                     </ul>
                 </li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
             </ul>
             <div class="nav-contact">
                 <a href="tel:7164050316" class="phone-btn">(716) 405-0316</a>
@@ -187,7 +187,7 @@
                 <p class="hero-description">716 Details brings expert marine detailing services to Lake Ontario boat owners in Lewiston, Youngstown, Wilson, and throughout Niagara County. From fiberglass restoration to marine interior cleaning, we protect your investment and keep your vessel looking pristine for every voyage.</p>
                 <div class="hero-cta">
                     <a href="tel:7164050316" class="cta-btn primary">Call (716) 405-0316</a>
-                    <a href="#services" class="cta-btn secondary">View Services</a>
+                    <a href="#packages" class="cta-btn secondary">View Packages</a>
                 </div>
             </div>
         </div>
@@ -227,6 +227,71 @@
                     <div class="benefit-icon">🧴</div>
                     <h3>Engine Bay Cleaning</h3>
                     <p>Safe cleaning and degreasing of engine compartments using marine-safe products that won't harm sensitive components</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Boat Detailing Packages Section -->
+    <section id="packages" class="service-packages">
+        <div class="container">
+            <h2>Boat Detailing Packages</h2>
+            <p class="section-subtitle">Professional marine detailing services priced by vessel size for transparent, fair pricing</p>
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Compact Boat Package (10-15ft)</h3>
+                        <div class="package-price">$485</div>
+                    </div>
+                    <ul class="package-features">
+                        <li>Complete hull wash & decontamination</li>
+                        <li>Gel coat inspection & light polishing</li>
+                        <li>Interior cabin cleaning & sanitization</li>
+                        <li>Marine-grade wax application</li>
+                        <li>Hardware & chrome polishing</li>
+                        <li>Canvas & upholstery cleaning</li>
+                        <li>Engine bay cleaning & degreasing</li>
+                        <li>Final quality inspection</li>
+                    </ul>
+                    <a href="tel:7164050316" class="package-btn">Book Compact Boat Service</a>
+                </div>
+                <div class="package-card featured">
+                    <div class="package-badge">Most Popular</div>
+                    <div class="package-header">
+                        <h3>Standard Boat Package (20-30ft)</h3>
+                        <div class="package-price">$635</div>
+                    </div>
+                    <ul class="package-features">
+                        <li>Everything in Compact Boat Package</li>
+                        <li>Extended hull surface coverage</li>
+                        <li>Advanced gel coat restoration</li>
+                        <li>Multiple cabin & berth cleaning</li>
+                        <li>Comprehensive hardware detailing</li>
+                        <li>Propeller & drive unit cleaning</li>
+                        <li>Deck & cockpit deep cleaning</li>
+                        <li>UV protection coating application</li>
+                        <li>Pre-season launch preparation</li>
+                    </ul>
+                    <a href="tel:7164050316" class="package-btn">Book Standard Boat Service</a>
+                </div>
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Large Boat Package (35-45ft)</h3>
+                        <div class="package-price">$785</div>
+                    </div>
+                    <ul class="package-features">
+                        <li>Everything in Standard Boat Package</li>
+                        <li>Full yacht-level treatment</li>
+                        <li>Multiple stateroom deep cleaning</li>
+                        <li>Galley & head comprehensive cleaning</li>
+                        <li>Extensive teak & wood restoration</li>
+                        <li>Complete canvas & cover cleaning</li>
+                        <li>Multi-engine bay detailing</li>
+                        <li>Flybridge & tower cleaning</li>
+                        <li>Professional marine photography</li>
+                        <li>Extended warranty coverage</li>
+                    </ul>
+                    <a href="tel:7164050316" class="package-btn">Book Large Boat Service</a>
                 </div>
             </div>
         </div>
@@ -597,200 +662,388 @@
 
     <!-- Mobile Navigation Script - ULTIMATE VERSION -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get elements
-            const hamburger = document.querySelector('#hamburger');
-            const navMenu = document.querySelector('#nav-menu');
-            const body = document.body;
-            const html = document.documentElement;
-            
-            // Track menu state and scroll position
-            let isMenuOpen = false;
-            let scrollPosition = 0;
-            
-            // Enhanced hamburger click handler
-            if (hamburger && navMenu) {
-                hamburger.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    isMenuOpen = !isMenuOpen;
-                    
-                    if (isMenuOpen) {
-                        scrollPosition = window.pageYOffset;
-                        hamburger.classList.add('active');
-                        navMenu.classList.add('active');
-                        body.style.overflow = 'hidden';
-                        body.style.position = 'fixed';
-                        body.style.top = `-${scrollPosition}px`;
-                        body.style.width = '100%';
-                        body.style.height = '100%';
-                        html.style.overflow = 'hidden';
-                    } else {
-                        hamburger.classList.remove('active');
-                        navMenu.classList.remove('active');
-                        body.style.overflow = '';
-                        body.style.position = '';
-                        body.style.top = '';
-                        body.style.width = '';
-                        body.style.height = '';
-                        html.style.overflow = '';
-                        window.scrollTo(0, scrollPosition);
-                        closeAllDropdowns();
-                    }
-                });
-            }
-            
-            // Direct dropdown handling - FOOTER-SAFE SELECTORS
-            function initializeDropdowns() {
-                // CRITICAL: Use .nav-menu selectors to avoid footer conflicts
-                const servicesToggle = document.querySelector('.nav-menu a[href="#services"]');
-                const areasToggle = document.querySelector('.nav-menu a[href="#areas"]');
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get elements
+        const hamburger = document.querySelector('#hamburger');
+        const navMenu = document.querySelector('#nav-menu');
+        const body = document.body;
+        const html = document.documentElement;
+        
+        // Track menu state and scroll position
+        let isMenuOpen = false;
+        let scrollPosition = 0;
+        
+        // Enhanced hamburger click handler
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
                 
-                if (servicesToggle) {
-                    servicesToggle.addEventListener('click', function(e) {
-                        if (window.innerWidth <= 768) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            const servicesMenu = this.nextElementSibling;
-                            const isActive = this.classList.contains('active');
-                            
-                            if (isActive) {
-                                closeAllDropdowns();
-                            } else {
-                                const areasToggle = document.querySelector('.nav-menu a[href="#areas"]');
-                                if (areasToggle && areasToggle !== this) {
-                                    const areasMenu = areasToggle.nextElementSibling;
-                                    areasToggle.classList.remove('active');
-                                    areasMenu.classList.remove('active', 'show');
-                                    areasMenu.style.display = 'none';
-                                }
-                                this.classList.add('active');
-                                servicesMenu.classList.add('active', 'show');
-                                servicesMenu.style.display = 'block';
-                                const arrow = this.querySelector('.dropdown-arrow');
-                                if (arrow) arrow.style.transform = 'rotate(180deg)';
-                            }
-                        }
-                    });
-                }
+                isMenuOpen = !isMenuOpen;
                 
-                if (areasToggle) {
-                    areasToggle.addEventListener('click', function(e) {
-                        if (window.innerWidth <= 768) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            const areasMenu = this.nextElementSibling;
-                            const isActive = this.classList.contains('active');
-                            
-                            if (isActive) {
-                                closeAllDropdowns();
-                            } else {
-                                const servicesToggle = document.querySelector('.nav-menu a[href="#services"]');
-                                if (servicesToggle && servicesToggle !== this) {
-                                    const servicesMenu = servicesToggle.nextElementSibling;
-                                    servicesToggle.classList.remove('active');
-                                    servicesMenu.classList.remove('active', 'show');
-                                    servicesMenu.style.display = 'none';
-                                }
-                                this.classList.add('active');
-                                areasMenu.classList.add('active', 'show');
-                                areasMenu.style.display = 'block';
-                                const arrow = this.querySelector('.dropdown-arrow');
-                                if (arrow) arrow.style.transform = 'rotate(180deg)';
-                            }
-                        }
-                    });
-                }
-            }
-            
-            // Clean initial state - FOOTER-SAFE SELECTORS
-            document.querySelectorAll('.nav-menu .dropdown-toggle').forEach(toggle => {
-                toggle.classList.remove('active');
-                const arrow = toggle.querySelector('.dropdown-arrow');
-                if (arrow) arrow.style.transform = 'rotate(0deg)';
-            });
-            document.querySelectorAll('.nav-menu .dropdown-menu').forEach(menu => {
-                menu.classList.remove('active', 'show');
-                menu.style.display = 'none';
-            });
-            
-            initializeDropdowns();
-            
-            function closeMenu() {
                 if (isMenuOpen) {
-                    isMenuOpen = false;
+                    // Store current scroll position
+                    scrollPosition = window.pageYOffset;
+                    
+                    // Open menu with enhanced body lock
+                    hamburger.classList.add('active');
+                    navMenu.classList.add('active');
+                    
+                    // Enhanced body lock - prevents all scrolling and jumping
+                    body.style.overflow = 'hidden';
+                    body.style.position = 'fixed';
+                    body.style.top = `-${scrollPosition}px`;
+                    body.style.width = '100%';
+                    body.style.height = '100%';
+                    
+                    // Also lock html element for extra security
+                    html.style.overflow = 'hidden';
+                    
+                } else {
+                    // Close menu and restore scroll position
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
+                    
+                    // Restore body styles
                     body.style.overflow = '';
                     body.style.position = '';
                     body.style.top = '';
                     body.style.width = '';
                     body.style.height = '';
                     html.style.overflow = '';
+                    
+                    // Restore scroll position smoothly
                     window.scrollTo(0, scrollPosition);
+                    
+                    closeAllDropdowns();
+                }
+            });
+        }
+        
+        // Dropdown handling for both mobile and desktop
+        function initializeDropdowns() {
+            console.log('🔧 Initializing dropdowns...');
+            
+            // Get dropdown toggles by more specific selectors
+            const dropdownToggles = document.querySelectorAll('.nav-menu .dropdown-toggle');
+            const servicesToggle = dropdownToggles[0]; // First dropdown toggle (Services)
+            const areasToggle = dropdownToggles[1]; // Second dropdown toggle (Service Areas)
+            
+            console.log('Total dropdown toggles found:', dropdownToggles.length);
+            console.log('Services toggle found:', !!servicesToggle);
+            console.log('Areas toggle found:', !!areasToggle);
+            
+            if (servicesToggle) {
+                console.log('Services toggle text:', servicesToggle.textContent.trim());
+            }
+            if (areasToggle) {
+                console.log('Areas toggle text:', areasToggle.textContent.trim());
+            }
+            
+            // Direct event handling for Services
+            if (servicesToggle) {
+                servicesToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    console.log('🎯 Services clicked!');
+                    
+                    const servicesMenu = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // If it's currently active, we're closing it
+                    if (isActive) {
+                        console.log('✅ Services closing');
+                        closeAllDropdowns();
+                    } else {
+                        // Close other dropdowns but not this one
+                        if (areasToggle && areasToggle !== this) {
+                            const areasMenu = areasToggle.nextElementSibling;
+                            areasToggle.classList.remove('active');
+                            areasMenu.classList.remove('active', 'show');
+                            if (window.innerWidth <= 768) {
+                                areasMenu.style.display = 'none';
+                            }
+                            const areasArrow = areasToggle.querySelector('.dropdown-arrow');
+                            if (areasArrow && window.innerWidth <= 768) {
+                                areasArrow.style.transform = 'rotate(0deg)';
+                            }
+                        }
+                        
+                        // Open this dropdown
+                        this.classList.add('active');
+                        servicesMenu.classList.add('active', 'show');
+                        if (window.innerWidth <= 768) {
+                            servicesMenu.style.display = 'block';
+                        }
+                        
+                        // Force arrow animation on mobile
+                        const arrow = this.querySelector('.dropdown-arrow');
+                        if (arrow && window.innerWidth <= 768) {
+                            arrow.style.transform = 'rotate(180deg)';
+                        }
+                        
+                        console.log('✅ Services opened');
+                    }
+                });
+            }
+            
+            // Direct event handling for Service Areas
+            if (areasToggle) {
+                areasToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    console.log('🎯 Service Areas clicked!');
+                    
+                    const areasMenu = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // If it's currently active, we're closing it
+                    if (isActive) {
+                        console.log('✅ Service Areas closing');
+                        closeAllDropdowns();
+                    } else {
+                        // Close other dropdowns but not this one
+                        if (servicesToggle && servicesToggle !== this) {
+                            const servicesMenu = servicesToggle.nextElementSibling;
+                            servicesToggle.classList.remove('active');
+                            servicesMenu.classList.remove('active', 'show');
+                            if (window.innerWidth <= 768) {
+                                servicesMenu.style.display = 'none';
+                            }
+                            const servicesArrow = servicesToggle.querySelector('.dropdown-arrow');
+                            if (servicesArrow && window.innerWidth <= 768) {
+                                servicesArrow.style.transform = 'rotate(0deg)';
+                            }
+                        }
+                        
+                        // Open this dropdown
+                        this.classList.add('active');
+                        areasMenu.classList.add('active', 'show');
+                        if (window.innerWidth <= 768) {
+                            areasMenu.style.display = 'block';
+                        }
+                        
+                        // Force arrow animation on mobile
+                        const arrow = this.querySelector('.dropdown-arrow');
+                        if (arrow && window.innerWidth <= 768) {
+                            arrow.style.transform = 'rotate(180deg)';
+                        }
+                        
+                        console.log('✅ Service Areas opened');
+                    }
+                });
+            }
+        }
+        
+        // Ensure clean initial state for dropdowns
+        console.log('🧹 Cleaning initial dropdown state...');
+        
+        // Initialize dropdowns immediately
+        initializeDropdowns();
+        
+        // Clean state after initialization
+        setTimeout(() => {
+            const allDropdownToggles = document.querySelectorAll('.nav-menu .dropdown-toggle');
+            const allDropdownMenus = document.querySelectorAll('.nav-menu .dropdown-menu');
+            
+            allDropdownToggles.forEach(toggle => {
+                toggle.classList.remove('active');
+                const arrow = toggle.querySelector('.dropdown-arrow');
+                if (arrow) {
+                    arrow.style.transform = '';
+                }
+                console.log('Cleaned toggle:', toggle.textContent.trim());
+            });
+            
+            allDropdownMenus.forEach(menu => {
+                menu.classList.remove('active', 'show');
+                if (window.innerWidth <= 768) {
+                    menu.style.display = 'none';
+                } else {
+                    menu.style.display = '';
+                }
+            });
+            
+            console.log('🎯 Dropdowns ready!');
+        }, 100);
+        
+        // Enhanced function to close menu
+        function closeMenu() {
+            if (isMenuOpen) {
+                isMenuOpen = false;
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                
+                // Restore body styles with enhanced cleanup
+                body.style.overflow = '';
+                body.style.position = '';
+                body.style.top = '';
+                body.style.width = '';
+                body.style.height = '';
+                html.style.overflow = '';
+                
+                // Restore scroll position smoothly
+                window.scrollTo(0, scrollPosition);
+                
+                closeAllDropdowns();
+            }
+        }
+        
+        // Close menu when clicking on regular links (not dropdown toggles)
+        const navLinks = document.querySelectorAll('.nav-menu a:not(.dropdown-toggle)');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Don't prevent default - let the link work
+                if (window.innerWidth <= 768) {
+                    setTimeout(closeMenu, 100);
+                }
+            });
+        });
+        
+        // Prevent dropdown menu clicks from closing the menu
+        const dropdownMenuLinks = document.querySelectorAll('.dropdown-menu a');
+        dropdownMenuLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Allow the link to work but close menu after navigation
+                if (window.innerWidth <= 768) {
+                    setTimeout(closeMenu, 100);
+                }
+            });
+        });
+        
+        // Close menu when clicking outside (enhanced with better detection)
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768 && isMenuOpen) {
+                // Check if click is outside menu and hamburger
+                if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                    closeMenu();
+                }
+            } else if (window.innerWidth > 768) {
+                // On desktop, close dropdowns when clicking outside
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+                let clickedInsideDropdown = false;
+                
+                // Check if click was inside any dropdown
+                dropdownToggles.forEach(toggle => {
+                    if (toggle.contains(e.target)) {
+                        clickedInsideDropdown = true;
+                    }
+                });
+                
+                dropdownMenus.forEach(menu => {
+                    if (menu.contains(e.target)) {
+                        clickedInsideDropdown = true;
+                    }
+                });
+                
+                // If click was outside all dropdowns, close them
+                if (!clickedInsideDropdown) {
                     closeAllDropdowns();
                 }
             }
-            
-            // FOOTER-SAFE: Only target navigation links, not footer links
-            document.querySelectorAll('.nav-menu a:not(.dropdown-toggle)').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) setTimeout(closeMenu, 100);
-                });
-            });
-            
-            document.querySelectorAll('.dropdown-menu a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) setTimeout(closeMenu, 100);
-                });
-            });
-            
-            document.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768 && isMenuOpen) {
-                    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-                        closeMenu();
-                    }
+        });
+        
+        // Enhanced touch handling for mobile devices
+        let touchStartY = 0;
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        
+        document.addEventListener('touchmove', function(e) {
+            if (isMenuOpen && window.innerWidth <= 768) {
+                const touchY = e.touches[0].clientY;
+                const touchDiff = touchStartY - touchY;
+                
+                // If user is scrolling within the nav menu, allow it
+                if (navMenu.contains(e.target)) {
+                    return;
+                }
+                
+                // Prevent background scrolling
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        // Function to close all dropdowns
+        function closeAllDropdowns() {
+            document.querySelectorAll('.nav-menu .dropdown-menu').forEach(menu => {
+                menu.classList.remove('active', 'show');
+                // Only set display none on mobile
+                if (window.innerWidth <= 768) {
+                    menu.style.display = 'none';
+                } else {
+                    menu.style.display = '';
                 }
             });
-            
-            function closeAllDropdowns() {
-                // FOOTER-SAFE: Only target navigation dropdowns
-                document.querySelectorAll('.nav-menu .dropdown-menu').forEach(menu => {
-                    menu.classList.remove('active', 'show');
-                    menu.style.display = 'none';
-                });
-                document.querySelectorAll('.nav-menu .dropdown-toggle').forEach(toggle => {
-                    toggle.classList.remove('active');
-                    const arrow = toggle.querySelector('.dropdown-arrow');
-                    if (arrow) arrow.style.transform = 'rotate(0deg)';
-                });
-            }
-            
-            let resizeTimer;
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(function() {
-                    if (window.innerWidth > 768) {
-                        if (isMenuOpen) {
-                            isMenuOpen = false;
-                            hamburger.classList.remove('active');
-                            navMenu.classList.remove('active');
-                            body.style.overflow = '';
-                            body.style.position = '';
-                            body.style.top = '';
-                            body.style.width = '';
-                            body.style.height = '';
-                            html.style.overflow = '';
-                            closeAllDropdowns();
-                        }
-                        document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                            menu.style.display = '';
-                        });
+            document.querySelectorAll('.nav-menu .dropdown-toggle').forEach(toggle => {
+                toggle.classList.remove('active');
+                const arrow = toggle.querySelector('.dropdown-arrow');
+                if (arrow) {
+                    // Only force arrow rotation on mobile
+                    if (window.innerWidth <= 768) {
+                        arrow.style.transform = 'rotate(0deg)';
+                    } else {
+                        arrow.style.transform = '';
                     }
-                }, 250);
+                    console.log('🎯 Reset arrow rotation');
+                }
             });
+        }
+        
+        // Enhanced window resize handler
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                if (window.innerWidth > 768) {
+                    // Force close menu when switching to desktop
+                    if (isMenuOpen) {
+                        isMenuOpen = false;
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        
+                        // Enhanced cleanup for desktop switch
+                        body.style.overflow = '';
+                        body.style.position = '';
+                        body.style.top = '';
+                        body.style.width = '';
+                        body.style.height = '';
+                        html.style.overflow = '';
+                        
+                        closeAllDropdowns();
+                    }
+                    
+                    // Reset dropdown styles for desktop - clear mobile overrides
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.style.display = '';
+                        menu.classList.remove('active', 'show');
+                    });
+                    
+                    // Reset dropdown toggles for desktop
+                    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+                        toggle.classList.remove('active');
+                        const arrow = toggle.querySelector('.dropdown-arrow');
+                        if (arrow) {
+                            arrow.style.transform = '';
+                        }
+                    });
+                }
+            }, 250);
         });
+        
+        // Prevent double-tap zoom on iOS
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(e) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    });
     </script>
 </body>
 </html>
