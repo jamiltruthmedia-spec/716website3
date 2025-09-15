@@ -847,6 +847,46 @@ a {
     gap: 2.5rem;
 }
 
+/* Packages Sections (for multiple package groups like window tinting) */
+.service-packages .packages-section {
+    margin-bottom: 6rem !important;
+    padding-bottom: 2rem;
+}
+
+.service-packages .packages-section:last-child {
+    margin-bottom: 0 !important;
+}
+
+.service-packages .packages-section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 4rem !important;
+    margin-top: 4rem !important;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 3rem 0 2rem 0 !important;
+    border-top: 2px solid #333333;
+    position: relative;
+    z-index: 1;
+    background: #111111;
+}
+
+.service-packages .packages-section:first-child .packages-section-title {
+    border-top: none !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Extra spacing for window tinting specifically */
+.service-packages .packages-section + .packages-section {
+    margin-top: 4rem !important;
+}
+
+.service-packages .packages-section + .packages-section .packages-section-title {
+    margin-top: 5rem !important;
+    padding-top: 4rem !important;
+}
+
 .package-card {
     background: #000000;
     border-radius: 16px;
