@@ -860,6 +860,19 @@ a {
     max-width: 450px;
 }
 
+/* Two Package Layout - for pages with exactly two packages */
+.packages-grid.two-package {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.packages-grid.two-package .package-card {
+    max-width: 450px;
+}
+
 /* Packages Sections (for multiple package groups like window tinting) */
 .service-packages .packages-section {
     margin-bottom: 6rem !important;
@@ -1929,6 +1942,11 @@ input:focus, select:focus, textarea:focus {
     }
 
     .packages-grid.single-package {
+        max-width: 100%;
+    }
+
+    .packages-grid.two-package {
+        grid-template-columns: 1fr;
         max-width: 100%;
     }
 
