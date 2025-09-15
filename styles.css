@@ -847,6 +847,19 @@ a {
     gap: 2.5rem;
 }
 
+/* Single Package Layout - for pages with only one package */
+.packages-grid.single-package {
+    display: flex;
+    justify-content: center;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.packages-grid.single-package .package-card {
+    width: 100%;
+    max-width: 450px;
+}
+
 /* Packages Sections (for multiple package groups like window tinting) */
 .service-packages .packages-section {
     margin-bottom: 6rem !important;
@@ -1913,6 +1926,10 @@ input:focus, select:focus, textarea:focus {
 
     .packages-grid {
         grid-template-columns: 1fr;
+    }
+
+    .packages-grid.single-package {
+        max-width: 100%;
     }
 
     .faq-grid {
