@@ -781,8 +781,9 @@
             // Direct event handling for Services
             if (servicesToggle) {
                 servicesToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        e.stopPropagation();
                         
                         console.log('🎯 Services clicked!');
                         console.log('🔍 Page loaded state check...');
@@ -812,17 +813,42 @@
                             // Open this dropdown
                             this.classList.add('active');
                             servicesMenu.classList.add('active', 'show');
-                            if (window.innerWidth <= 768) {
-                                servicesMenu.style.display = 'block';
-                            }
+                            servicesMenu.style.display = 'block';
                             
-                            // Force arrow animation on mobile
+                            // Force arrow animation by triggering reflow
                             const arrow = this.querySelector('.dropdown-arrow');
-                            if (arrow && window.innerWidth <= 768) {
+                            if (arrow) {
                                 arrow.style.transform = 'rotate(180deg)';
+                                console.log('🎯 Force-applied arrow rotation');
                             }
                             
                             console.log('✅ Services opened - Arrow should point up now');
+                        }
+                    }
+                });
+                
+                // Add desktop functionality
+                servicesToggle.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const servicesMenu = this.nextElementSibling;
+                        const isActive = this.classList.contains('active');
+                        
+                        if (isActive) {
+                            closeAllDropdowns();
+                        } else {
+                            // Close other dropdowns
+                            if (areasToggle && areasToggle !== this) {
+                                const areasMenu = areasToggle.nextElementSibling;
+                                areasToggle.classList.remove('active');
+                                areasMenu.classList.remove('active', 'show');
+                            }
+                            
+                            // Open this dropdown
+                            this.classList.add('active');
+                            servicesMenu.classList.add('active', 'show');
                         }
                     }
                 });
@@ -831,8 +857,9 @@
             // Direct event handling for Service Areas
             if (areasToggle) {
                 areasToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        e.stopPropagation();
                         
                         console.log('🎯 Service Areas clicked!');
                         console.log('🔍 Page loaded state check...');
@@ -862,17 +889,42 @@
                             // Open this dropdown
                             this.classList.add('active');
                             areasMenu.classList.add('active', 'show');
-                            if (window.innerWidth <= 768) {
-                                areasMenu.style.display = 'block';
-                            }
+                            areasMenu.style.display = 'block';
                             
-                            // Force arrow animation on mobile
+                            // Force arrow animation by triggering reflow
                             const arrow = this.querySelector('.dropdown-arrow');
-                            if (arrow && window.innerWidth <= 768) {
+                            if (arrow) {
                                 arrow.style.transform = 'rotate(180deg)';
+                                console.log('🎯 Force-applied arrow rotation');
                             }
                             
                             console.log('✅ Service Areas opened - Arrow should point up now');
+                        }
+                    }
+                });
+                
+                // Add desktop functionality
+                areasToggle.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const areasMenu = this.nextElementSibling;
+                        const isActive = this.classList.contains('active');
+                        
+                        if (isActive) {
+                            closeAllDropdowns();
+                        } else {
+                            // Close other dropdowns
+                            if (servicesToggle && servicesToggle !== this) {
+                                const servicesMenu = servicesToggle.nextElementSibling;
+                                servicesToggle.classList.remove('active');
+                                servicesMenu.classList.remove('active', 'show');
+                            }
+                            
+                            // Open this dropdown
+                            this.classList.add('active');
+                            areasMenu.classList.add('active', 'show');
                         }
                     }
                 });
