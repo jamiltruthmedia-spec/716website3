@@ -766,7 +766,7 @@
             });
         }
         
-        // Direct dropdown handling without cloning - testing approach
+        // Dropdown handling for both mobile and desktop
         function initializeDropdowns() {
             console.log('🔧 Initializing dropdowns...');
             
@@ -775,81 +775,61 @@
             const servicesToggle = dropdownToggles[0]; // First dropdown toggle (Services)
             const areasToggle = dropdownToggles[1]; // Second dropdown toggle (Service Areas)
             
+            console.log('Total dropdown toggles found:', dropdownToggles.length);
             console.log('Services toggle found:', !!servicesToggle);
             console.log('Areas toggle found:', !!areasToggle);
+            
+            if (servicesToggle) {
+                console.log('Services toggle text:', servicesToggle.textContent.trim());
+            }
+            if (areasToggle) {
+                console.log('Areas toggle text:', areasToggle.textContent.trim());
+            }
             
             // Direct event handling for Services
             if (servicesToggle) {
                 servicesToggle.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        console.log('🎯 Services clicked!');
-                        console.log('🔍 Page loaded state check...');
-                        
-                        const servicesMenu = this.nextElementSibling;
-                        const isActive = this.classList.contains('active');
-                        const arrow = this.querySelector('.dropdown-arrow');
-                        
-                        console.log('Services currently active:', isActive);
-                        console.log('Arrow found:', !!arrow);
-                        console.log('Services menu display:', servicesMenu ? servicesMenu.style.display : 'not found');
-                        console.log('Services menu classes:', servicesMenu ? servicesMenu.className : 'not found');
-                        
-                        // If it's currently active, we're closing it
-                        if (isActive) {
-                            console.log('✅ Services closing - Arrow should point down');
-                            closeAllDropdowns();
-                        } else {
-                            // Close other dropdowns but not this one
-                            if (areasToggle && areasToggle !== this) {
-                                const areasMenu = areasToggle.nextElementSibling;
-                                areasToggle.classList.remove('active');
-                                areasMenu.classList.remove('active', 'show');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    console.log('🎯 Services clicked!');
+                    
+                    const servicesMenu = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // If it's currently active, we're closing it
+                    if (isActive) {
+                        console.log('✅ Services closing');
+                        closeAllDropdowns();
+                    } else {
+                        // Close other dropdowns but not this one
+                        if (areasToggle && areasToggle !== this) {
+                            const areasMenu = areasToggle.nextElementSibling;
+                            areasToggle.classList.remove('active');
+                            areasMenu.classList.remove('active', 'show');
+                            if (window.innerWidth <= 768) {
                                 areasMenu.style.display = 'none';
                             }
-                            
-                            // Open this dropdown
-                            this.classList.add('active');
-                            servicesMenu.classList.add('active', 'show');
+                            const areasArrow = areasToggle.querySelector('.dropdown-arrow');
+                            if (areasArrow && window.innerWidth <= 768) {
+                                areasArrow.style.transform = 'rotate(0deg)';
+                            }
+                        }
+                        
+                        // Open this dropdown
+                        this.classList.add('active');
+                        servicesMenu.classList.add('active', 'show');
+                        if (window.innerWidth <= 768) {
                             servicesMenu.style.display = 'block';
-                            
-                            // Force arrow animation by triggering reflow
-                            const arrow = this.querySelector('.dropdown-arrow');
-                            if (arrow) {
-                                arrow.style.transform = 'rotate(180deg)';
-                                console.log('🎯 Force-applied arrow rotation');
-                            }
-                            
-                            console.log('✅ Services opened - Arrow should point up now');
                         }
-                    }
-                });
-                
-                // Add desktop functionality
-                servicesToggle.addEventListener('click', function(e) {
-                    if (window.innerWidth > 768) {
-                        e.preventDefault();
-                        e.stopPropagation();
                         
-                        const servicesMenu = this.nextElementSibling;
-                        const isActive = this.classList.contains('active');
-                        
-                        if (isActive) {
-                            closeAllDropdowns();
-                        } else {
-                            // Close other dropdowns
-                            if (areasToggle && areasToggle !== this) {
-                                const areasMenu = areasToggle.nextElementSibling;
-                                areasToggle.classList.remove('active');
-                                areasMenu.classList.remove('active', 'show');
-                            }
-                            
-                            // Open this dropdown
-                            this.classList.add('active');
-                            servicesMenu.classList.add('active', 'show');
+                        // Force arrow animation on mobile
+                        const arrow = this.querySelector('.dropdown-arrow');
+                        if (arrow && window.innerWidth <= 768) {
+                            arrow.style.transform = 'rotate(180deg)';
                         }
+                        
+                        console.log('✅ Services opened');
                     }
                 });
             }
@@ -857,75 +837,47 @@
             // Direct event handling for Service Areas
             if (areasToggle) {
                 areasToggle.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        console.log('🎯 Service Areas clicked!');
-                        console.log('🔍 Page loaded state check...');
-                        
-                        const areasMenu = this.nextElementSibling;
-                        const isActive = this.classList.contains('active');
-                        const arrow = this.querySelector('.dropdown-arrow');
-                        
-                        console.log('Service Areas currently active:', isActive);
-                        console.log('Arrow found:', !!arrow);
-                        console.log('Areas menu display:', areasMenu ? areasMenu.style.display : 'not found');
-                        console.log('Areas menu classes:', areasMenu ? areasMenu.className : 'not found');
-                        
-                        // If it's currently active, we're closing it
-                        if (isActive) {
-                            console.log('✅ Service Areas closing - Arrow should point down');
-                            closeAllDropdowns();
-                        } else {
-                            // Close other dropdowns but not this one
-                            if (servicesToggle && servicesToggle !== this) {
-                                const servicesMenu = servicesToggle.nextElementSibling;
-                                servicesToggle.classList.remove('active');
-                                servicesMenu.classList.remove('active', 'show');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    console.log('🎯 Service Areas clicked!');
+                    
+                    const areasMenu = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // If it's currently active, we're closing it
+                    if (isActive) {
+                        console.log('✅ Service Areas closing');
+                        closeAllDropdowns();
+                    } else {
+                        // Close other dropdowns but not this one
+                        if (servicesToggle && servicesToggle !== this) {
+                            const servicesMenu = servicesToggle.nextElementSibling;
+                            servicesToggle.classList.remove('active');
+                            servicesMenu.classList.remove('active', 'show');
+                            if (window.innerWidth <= 768) {
                                 servicesMenu.style.display = 'none';
                             }
-                            
-                            // Open this dropdown
-                            this.classList.add('active');
-                            areasMenu.classList.add('active', 'show');
+                            const servicesArrow = servicesToggle.querySelector('.dropdown-arrow');
+                            if (servicesArrow && window.innerWidth <= 768) {
+                                servicesArrow.style.transform = 'rotate(0deg)';
+                            }
+                        }
+                        
+                        // Open this dropdown
+                        this.classList.add('active');
+                        areasMenu.classList.add('active', 'show');
+                        if (window.innerWidth <= 768) {
                             areasMenu.style.display = 'block';
-                            
-                            // Force arrow animation by triggering reflow
-                            const arrow = this.querySelector('.dropdown-arrow');
-                            if (arrow) {
-                                arrow.style.transform = 'rotate(180deg)';
-                                console.log('🎯 Force-applied arrow rotation');
-                            }
-                            
-                            console.log('✅ Service Areas opened - Arrow should point up now');
                         }
-                    }
-                });
-                
-                // Add desktop functionality
-                areasToggle.addEventListener('click', function(e) {
-                    if (window.innerWidth > 768) {
-                        e.preventDefault();
-                        e.stopPropagation();
                         
-                        const areasMenu = this.nextElementSibling;
-                        const isActive = this.classList.contains('active');
-                        
-                        if (isActive) {
-                            closeAllDropdowns();
-                        } else {
-                            // Close other dropdowns
-                            if (servicesToggle && servicesToggle !== this) {
-                                const servicesMenu = servicesToggle.nextElementSibling;
-                                servicesToggle.classList.remove('active');
-                                servicesMenu.classList.remove('active', 'show');
-                            }
-                            
-                            // Open this dropdown
-                            this.classList.add('active');
-                            areasMenu.classList.add('active', 'show');
+                        // Force arrow animation on mobile
+                        const arrow = this.querySelector('.dropdown-arrow');
+                        if (arrow && window.innerWidth <= 768) {
+                            arrow.style.transform = 'rotate(180deg)';
                         }
+                        
+                        console.log('✅ Service Areas opened');
                     }
                 });
             }
@@ -1035,6 +987,29 @@
                 // Check if click is outside menu and hamburger
                 if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
                     closeMenu();
+                }
+            } else if (window.innerWidth > 768) {
+                // On desktop, close dropdowns when clicking outside
+                const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+                const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+                let clickedInsideDropdown = false;
+                
+                // Check if click was inside any dropdown
+                dropdownToggles.forEach(toggle => {
+                    if (toggle.contains(e.target)) {
+                        clickedInsideDropdown = true;
+                    }
+                });
+                
+                dropdownMenus.forEach(menu => {
+                    if (menu.contains(e.target)) {
+                        clickedInsideDropdown = true;
+                    }
+                });
+                
+                // If click was outside all dropdowns, close them
+                if (!clickedInsideDropdown) {
+                    closeAllDropdowns();
                 }
             }
         });
