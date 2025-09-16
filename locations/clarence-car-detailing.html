@@ -1018,14 +1018,24 @@
         function closeAllDropdowns() {
             document.querySelectorAll('.nav-menu .dropdown-menu').forEach(menu => {
                 menu.classList.remove('active', 'show');
-                menu.style.display = 'none';
+                // Only set display none on mobile
+                if (window.innerWidth <= 768) {
+                    menu.style.display = 'none';
+                } else {
+                    menu.style.display = '';
+                }
             });
             document.querySelectorAll('.nav-menu .dropdown-toggle').forEach(toggle => {
                 toggle.classList.remove('active');
                 const arrow = toggle.querySelector('.dropdown-arrow');
                 if (arrow) {
-                    arrow.style.transform = 'rotate(0deg)';
-                    console.log('🎯 Reset arrow rotation to 0deg');
+                    // Only force arrow rotation on mobile
+                    if (window.innerWidth <= 768) {
+                        arrow.style.transform = 'rotate(0deg)';
+                    } else {
+                        arrow.style.transform = '';
+                    }
+                    console.log('🎯 Reset arrow rotation');
                 }
             });
         }
