@@ -78,7 +78,7 @@
             </div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="#services" class="dropdown-toggle">Services <span class="dropdown-arrow">▼</span></a>
+                <li><a href="javascript:void(0)" class="dropdown-toggle">Services <span class="dropdown-arrow">▼</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="../boat-detailing.html">Boat Detailing</a></li>
                         <li><a href="../ceramic-coating.html">Ceramic Coating</a></li>
@@ -94,7 +94,7 @@
                         <li><a href="../window-tinting.html">Window Tinting</a></li>
                     </ul>
                 </li>
-                <li><a href="#areas" class="dropdown-toggle">Service Areas <span class="dropdown-arrow">▼</span></a>
+                <li><a href="javascript:void(0)" class="dropdown-toggle">Service Areas <span class="dropdown-arrow">▼</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="clarence-car-detailing.html">Clarence, NY</a></li>
                         <li><a href="east-amherst-car-detailing.html">East Amherst, NY</a></li>
@@ -110,8 +110,8 @@
                         <li><a href="youngstown-car-detailing.html">Youngstown, NY</a></li>
                     </ul>
                 </li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
             </ul>
             <div class="nav-contact">
                 <a href="tel:7164050316" class="phone-btn">(716) 405-0316</a>
@@ -770,9 +770,10 @@
         function initializeDropdowns() {
             console.log('🔧 Initializing dropdowns...');
             
-            // Get dropdown toggles directly from navigation only
-            const servicesToggle = document.querySelector('.nav-menu a[href="#services"]');
-            const areasToggle = document.querySelector('.nav-menu a[href="#areas"]');
+            // Get dropdown toggles by more specific selectors
+            const dropdownToggles = document.querySelectorAll('.nav-menu .dropdown-toggle');
+            const servicesToggle = dropdownToggles[0]; // First dropdown toggle (Services)
+            const areasToggle = dropdownToggles[1]; // Second dropdown toggle (Service Areas)
             
             console.log('Services toggle found:', !!servicesToggle);
             console.log('Areas toggle found:', !!areasToggle);
@@ -802,7 +803,6 @@
                             closeAllDropdowns();
                         } else {
                             // Close other dropdowns but not this one
-                            const areasToggle = document.querySelector('.nav-menu a[href="#areas"]');
                             if (areasToggle && areasToggle !== this) {
                                 const areasMenu = areasToggle.nextElementSibling;
                                 areasToggle.classList.remove('active');
@@ -853,7 +853,6 @@
                             closeAllDropdowns();
                         } else {
                             // Close other dropdowns but not this one
-                            const servicesToggle = document.querySelector('.nav-menu a[href="#services"]');
                             if (servicesToggle && servicesToggle !== this) {
                                 const servicesMenu = servicesToggle.nextElementSibling;
                                 servicesToggle.classList.remove('active');
