@@ -781,9 +781,8 @@
             // Direct event handling for Services
             if (servicesToggle) {
                 servicesToggle.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        e.stopPropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
                         
                         console.log('🎯 Services clicked!');
                         console.log('🔍 Page loaded state check...');
@@ -813,13 +812,14 @@
                             // Open this dropdown
                             this.classList.add('active');
                             servicesMenu.classList.add('active', 'show');
-                            servicesMenu.style.display = 'block';
+                            if (window.innerWidth <= 768) {
+                                servicesMenu.style.display = 'block';
+                            }
                             
-                            // Force arrow animation by triggering reflow
+                            // Force arrow animation on mobile
                             const arrow = this.querySelector('.dropdown-arrow');
-                            if (arrow) {
+                            if (arrow && window.innerWidth <= 768) {
                                 arrow.style.transform = 'rotate(180deg)';
-                                console.log('🎯 Force-applied arrow rotation');
                             }
                             
                             console.log('✅ Services opened - Arrow should point up now');
@@ -831,9 +831,8 @@
             // Direct event handling for Service Areas
             if (areasToggle) {
                 areasToggle.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        e.stopPropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
                         
                         console.log('🎯 Service Areas clicked!');
                         console.log('🔍 Page loaded state check...');
@@ -863,13 +862,14 @@
                             // Open this dropdown
                             this.classList.add('active');
                             areasMenu.classList.add('active', 'show');
-                            areasMenu.style.display = 'block';
+                            if (window.innerWidth <= 768) {
+                                areasMenu.style.display = 'block';
+                            }
                             
-                            // Force arrow animation by triggering reflow
+                            // Force arrow animation on mobile
                             const arrow = this.querySelector('.dropdown-arrow');
-                            if (arrow) {
+                            if (arrow && window.innerWidth <= 768) {
                                 arrow.style.transform = 'rotate(180deg)';
-                                console.log('🎯 Force-applied arrow rotation');
                             }
                             
                             console.log('✅ Service Areas opened - Arrow should point up now');
